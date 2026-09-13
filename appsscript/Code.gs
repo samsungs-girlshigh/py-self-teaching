@@ -40,6 +40,10 @@ const ANSWER_KEY = {
     q1: ["opt_append"],
     q2: ["opt_remove"],
     q3: ["opt_sort"]
+  },
+  stage7_list2d: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 
