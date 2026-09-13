@@ -48,6 +48,10 @@ const ANSWER_KEY = {
   stage8_conditional1: {
     q1: ["opt_correct"],
     q2: ["opt_correct"]
+  },
+  stage9_conditional2: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 
