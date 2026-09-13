@@ -44,6 +44,10 @@ const ANSWER_KEY = {
   stage7_list2d: {
     q1: ["opt_correct"],
     q2: ["opt_correct"]
+  },
+  stage8_conditional1: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 
