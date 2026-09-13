@@ -56,6 +56,10 @@ const ANSWER_KEY = {
   stage10_loops: {
     q1: ["opt_correct"],
     q2: ["opt_correct"]
+  },
+  stage11_breakcontinue: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 
