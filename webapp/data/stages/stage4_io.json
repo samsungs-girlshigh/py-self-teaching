@@ -1,0 +1,43 @@
+{
+  "id": "stage4_io",
+  "title": "대화의 숲",
+  "intro": [
+    "숲의 정령: \"이 숲을 지나려면 나와 '대화'를 나눌 줄 알아야 한단다.\"",
+    "\"input()으로 내 말을 귀담아듣고, print()로 네 대답을 들려다오!\""
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "input()", "desc": "사용자로부터 값을 입력받는 함수. 입력값은 항상 문자열(str)로 저장됨" },
+      { "term": "print()", "desc": "괄호 안의 값을 화면에 출력하는 함수" },
+      { "term": "input()의 반환값", "desc": "숫자를 입력해도 문자열로 들어오므로, 계산하려면 int()나 float()로 변환 필요" }
+    ],
+    "exampleCode": "name = input(\"이름을 입력하세요: \")\nprint(\"안녕,\", name, \"모험가여!\")\n\nage_text = input(\"나이를 입력하세요: \")\nage = int(age_text)\nprint(\"내년이면\", age + 1, \"살이 되는구나.\")"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "정령이 이름을 물어보면 입력받아 name에 저장하고, \"어서오게, {이름}!\"이라고 인사하는 코드를 완성하세요. (input 실행 시 '용사'라고 입력한다고 가정합니다.)",
+      "codeTemplate": "name = {{blank}}\nprint(\"어서오게,\", name, \"!\")",
+      "inputValues": ["용사"],
+      "correctFeedback": "정령이 반갑게 인사를 건넵니다!",
+      "options": [
+        { "id": "opt_input", "code": "input(\"이름이 무엇인가? \")" },
+        { "id": "opt_print", "code": "print(\"이름이 무엇인가? \")" },
+        { "id": "opt_bare", "code": "\"이름이 무엇인가?\"" },
+        { "id": "opt_input_int", "code": "int(input(\"이름이 무엇인가? \"))" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "정령이 나이(숫자)를 물어보면 입력받아, 1년 뒤 나이를 계산해서 출력하는 코드를 완성하세요. (input 실행 시 '16'이라고 입력한다고 가정합니다. 입력값은 문자열이므로 계산 전에 숫자로 바꿔야 해요!)",
+      "codeTemplate": "age = {{blank}}\nprint(\"내년이면\", age + 1, \"살이 되는구나.\")",
+      "inputValues": ["16"],
+      "options": [
+        { "id": "opt_int_input", "code": "int(input(\"나이가 몇인가? \"))" },
+        { "id": "opt_input_only", "code": "input(\"나이가 몇인가? \")" },
+        { "id": "opt_float_input", "code": "float(input(\"나이가 몇인가? \"))" },
+        { "id": "opt_str_wrap", "code": "str(input(\"나이가 몇인가? \"))" }
+      ]
+    }
+  ]
+}

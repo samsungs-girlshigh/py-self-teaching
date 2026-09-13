@@ -34,9 +34,11 @@ createWorker();
  * 파이썬 코드를 실행하고 결과를 반환한다.
  * @param {string} code
  * @param {string[]} [loadPackages] - 이 실행에 필요한 추가 pyodide 패키지(예: ["pandas"])
+ * @param {string[]} [inputValues] - code 안의 input() 호출이 순서대로 돌려받을 값 목록.
+ *   input() 호출 횟수가 이 목록 길이보다 많으면 빈 문자열("")을 반환한다.
  * @returns {Promise<{ok:boolean, stdout?:string, stderr?:string, error?:string, timedOut?:boolean}>}
  */
-function runPython(code, loadPackages) {
+function runPython(code, loadPackages, inputValues) {
   const id = ++msgId;
   return new Promise((resolve) => {
     const timer = setTimeout(() => {
@@ -48,6 +50,6 @@ function runPython(code, loadPackages) {
     }, PYODIDE_TIMEOUT_MS);
 
     pending.set(id, { resolve, timer });
-    worker.postMessage({ id, code, loadPackages });
+    worker.postMessage({ id, code, loadPackages, inputValues });
   });
 }

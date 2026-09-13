@@ -27,6 +27,10 @@ const ANSWER_KEY = {
   stage3_operators: {
     q1: ["opt_a", "opt_d"],
     q2: ["opt_a", "opt_d"]
+  },
+  stage4_io: {
+    q1: ["opt_input"],
+    q2: ["opt_int_input", "opt_float_input"]
   }
 };
 

@@ -109,7 +109,7 @@ function renderQuestion(stageId, q, idx) {
     const runBox = document.getElementById(`run-${q.id}`);
     runBox.style.display = "block";
     runBox.textContent = "실행 중...";
-    const result = await runPython(fullCode, q.loadPackages);
+    const result = await runPython(fullCode, q.loadPackages, q.inputValues);
     if (result.ok) {
       runBox.textContent = result.stdout || "(출력 없음)";
     } else {

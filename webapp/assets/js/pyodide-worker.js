@@ -16,7 +16,7 @@ async function initPyodide() {
 }
 
 self.onmessage = async (e) => {
-  const { id, code, loadPackages } = e.data;
+  const { id, code, loadPackages, inputValues } = e.data;
   try {
     const pyodide = await initPyodide();
 
@@ -30,9 +30,30 @@ self.onmessage = async (e) => {
     self.__out = "";
     self.__err = "";
 
+    // 문제에서 미리 정해둔 입력값을 input() 호출 순서대로 하나씩 돌려주기 위한 큐.
+    // input() 호출 시 화면에도 "입력값 >> ..." 형태로 함께 출력해 사용자가 흐름을 볼 수 있게 한다.
+    self.__inputQueue = Array.isArray(inputValues) ? inputValues.slice() : [];
+
     // 이전 실행의 변수가 남지 않도록 새 전역 딕셔너리에서 실행한다.
     await pyodide.runPythonAsync(`
 import builtins
+import js
+
+__input_queue = list(js.self.__inputQueue)
+__input_index = {"i": 0}
+
+def __fake_input(prompt=""):
+    if prompt:
+        print(prompt, end="")
+    if __input_index["i"] < len(__input_queue):
+        value = __input_queue[__input_index["i"]]
+        __input_index["i"] += 1
+    else:
+        value = ""
+    print(value)
+    return value
+
+builtins.input = __fake_input
 __game_globals = {"__builtins__": builtins}
 `);
     const globalsDict = pyodide.globals.get("__game_globals");
