@@ -1,0 +1,41 @@
+{
+  "id": "stage12_sorting",
+  "title": "정렬의 방",
+  "intro": [
+    "방의 수호자: \"이 방의 보물상자 카드들은 뒤죽박죽이다. 순서대로 정렬해야 다음 문이 열린다.\"",
+    "\"버블 정렬은 이웃끼리 비교해서 큰 것을 뒤로 보내고, 선택 정렬은 가장 작은 것을 찾아 앞으로 보낸단다.\""
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "버블 정렬", "desc": "이웃한 두 값을 비교해 순서가 틀리면 교환. 이를 반복하면 큰 값이 거품처럼 뒤로 이동" },
+      { "term": "선택 정렬", "desc": "아직 정렬 안 된 부분에서 가장 작은 값을 찾아, 맨 앞(정렬 경계)과 교환" },
+      { "term": "교환(swap)", "desc": "두 변수의 값을 서로 바꾸는 것. 파이썬은 a, b = b, a 로 한 줄에 안전하게 교환 가능" }
+    ],
+    "exampleCode": "arr = [3, 1, 4, 1, 5]\nn = len(arr)\n\n# 버블 정렬: 이웃끼리 비교하며 교환\nfor i in range(n):\n    for j in range(n - 1 - i):\n        if arr[j] > arr[j + 1]:\n            arr[j], arr[j + 1] = arr[j + 1], arr[j]\nprint(arr)  # [1, 1, 3, 4, 5]"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "버블 정렬로 cards = [3, 1, 4, 1, 5]를 오름차순으로 정렬하는 코드를 완성하세요. (결과는 [1, 1, 3, 4, 5] 여야 합니다.)",
+      "codeTemplate": "cards = [3, 1, 4, 1, 5]\nn = len(cards)\nfor i in range(n):\n    {{blank}}\nprint(cards)",
+      "correctFeedback": "카드가 정확히 오름차순으로 정렬되었습니다!",
+      "options": [
+        { "id": "opt_correct", "code": "for j in range(n - 1 - i):\n        if cards[j] > cards[j + 1]:\n            cards[j], cards[j + 1] = cards[j + 1], cards[j]" },
+        { "id": "opt_wrong_direction", "code": "for j in range(n - 1 - i):\n        if cards[j] < cards[j + 1]:\n            cards[j], cards[j + 1] = cards[j + 1], cards[j]" },
+        { "id": "opt_wrong_swap", "code": "for j in range(n - 1 - i):\n        if cards[j] > cards[j + 1]:\n            cards[j] = cards[j + 1]\n            cards[j + 1] = cards[j]" },
+        { "id": "opt_index_error", "code": "for j in range(n):\n        if cards[j] > cards[j + 1]:\n            cards[j], cards[j + 1] = cards[j + 1], cards[j]" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "선택 정렬로 cards = [3, 1, 4, 1, 5]를 오름차순으로 정렬하는 코드를 완성하세요. (매 단계마다 '아직 정렬 안 된 부분'에서 가장 작은 값의 위치를 찾아 앞자리와 교환합니다. 결과는 [1, 1, 3, 4, 5] 여야 합니다.)",
+      "codeTemplate": "cards = [3, 1, 4, 1, 5]\nn = len(cards)\nfor i in range(n):\n    {{blank}}\nprint(cards)",
+      "options": [
+        { "id": "opt_correct", "code": "min_idx = i\n    for j in range(i + 1, n):\n        if cards[j] < cards[min_idx]:\n            min_idx = j\n    cards[i], cards[min_idx] = cards[min_idx], cards[i]" },
+        { "id": "opt_wrong_reset", "code": "min_idx = 0\n    for j in range(i + 1, n):\n        if cards[j] < cards[min_idx]:\n            min_idx = j\n    cards[i], cards[min_idx] = cards[min_idx], cards[i]" },
+        { "id": "opt_wrong_direction", "code": "min_idx = i\n    for j in range(i + 1, n):\n        if cards[j] > cards[min_idx]:\n            min_idx = j\n    cards[i], cards[min_idx] = cards[min_idx], cards[i]" },
+        { "id": "opt_swap_in_inner", "code": "min_idx = i\n    for j in range(i + 1, n):\n        if cards[j] < cards[min_idx]:\n            min_idx = j\n        cards[i], cards[min_idx] = cards[min_idx], cards[i]" }
+      ]
+    }
+  ]
+}

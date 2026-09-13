@@ -15,7 +15,8 @@ const STAGE_LIST = [
   { id: "stage8_conditional1", order: 8, chapter: "4단원 · 조건문",      title: "갈림길 신전 Ⅰ",               file: "data/stages/stage8_conditional1.json" },
   { id: "stage9_conditional2", order: 9, chapter: "4단원 · 다중 조건문", title: "갈림길 신전 Ⅱ",               file: "data/stages/stage9_conditional2.json" },
   { id: "stage10_loops",     order: 10, chapter: "4단원 · 반복문",       title: "무한 회랑",                   file: "data/stages/stage10_loops.json" },
-  { id: "stage11_breakcontinue", order: 11, chapter: "4단원 · break/continue", title: "무한 회랑 – 탈출구",     file: "data/stages/stage11_breakcontinue.json" }
+  { id: "stage11_breakcontinue", order: 11, chapter: "4단원 · break/continue", title: "무한 회랑 – 탈출구",     file: "data/stages/stage11_breakcontinue.json" },
+  { id: "stage12_sorting",   order: 12, chapter: "4단원 · 정렬 알고리즘", title: "정렬의 방",                  file: "data/stages/stage12_sorting.json" }
 ];
 
 function getStageMeta(stageId) {

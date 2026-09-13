@@ -60,6 +60,10 @@ const ANSWER_KEY = {
   stage11_breakcontinue: {
     q1: ["opt_correct"],
     q2: ["opt_correct"]
+  },
+  stage12_sorting: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 
