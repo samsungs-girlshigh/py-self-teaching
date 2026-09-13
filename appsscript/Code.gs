@@ -31,6 +31,10 @@ const ANSWER_KEY = {
   stage4_io: {
     q1: ["opt_input"],
     q2: ["opt_int_input", "opt_float_input"]
+  },
+  stage5_fileio: {
+    q1: ["opt_append"],
+    q2: ["opt_correct"]
   }
 };
 

@@ -10,8 +10,13 @@
 | 2 | 3단원 | 자료형 | 시작의 마을 - 스탯 창 | ✅ 완료 |
 | 3 | 3단원 | 연산자 | 연산의 관문 | ✅ 완료 |
 | 4 | 3단원 | 표준입출력 | 대화의 숲 | ✅ 완료 |
-| 5 | 3단원 | 파일입출력 | 기억의 동굴 | 예정 |
+| 5 | 3단원 | 파일입출력 | 기억의 동굴 | ✅ 완료 |
 | 6~19 | 3~6단원 | (리스트~객체지향 등) | - | 예정 |
+
+## 5단계(파일입출력) 관련 메모
+
+- 실제 컴퓨터 파일(`open()`)을 열고 닫는 대신, 문자열 변수(`save_data`)로 "가상 세이브 파일"을 흉내 냈습니다. 개념 카드에 실제 `open("save.txt", "a")` 형태도 함께 언급해 실제 파일 처리와의 연결고리를 남겼습니다.
+- 이어쓰기(`+=`)와 덮어쓰기(`=`)의 차이, `split()`으로 구분자 기준 데이터를 나눌 때 인덱스를 잘못 짚는 실수를 오답 포인트로 활용했습니다.
 
 ## 4단계(표준입출력) 관련 기술 메모
 
@@ -21,8 +26,10 @@
 
 ## 폴더 구조
 
+이 저장소는 루트가 곧 웹앱의 루트입니다 (GitHub Pages 등에 그대로 올리면 바로 `index.html`부터 접근됩니다).
+
 ```
-webapp/
+(저장소 루트)
   index.html          - 개발/테스트용 임시 진입 페이지
   stage.html           - 모든 스테이지가 공유하는 화면 템플릿 (?id=스테이지ID 로 어떤 스테이지인지 결정)
   hub.html             - 전체 스테이지 링크 허브 (기본 교사 전용, PIN으로 열람 + 공개 토글)
@@ -41,6 +48,7 @@ webapp/
     stage1_variables.json
     stage2_datatypes.json
     stage3_operators.json
+    stage4_io.json
   appsscript/
     Code.gs             - 구글 앱스 스크립트 백엔드 코드
     README.md           - 백엔드 설치 방법 (필독)
@@ -50,8 +58,8 @@ webapp/
 
 1. **백엔드 먼저 설정**: `appsscript/README.md` 를 따라 구글 시트 + 앱스 스크립트를 배포하고 웹앱 URL을 받습니다.
 2. `assets/js/config.js` 의 `APPS_SCRIPT_URL` 을 그 URL로 바꿉니다.
-3. `webapp` 폴더 전체를 정적 웹 호스팅(GitHub Pages, Netlify, 학교 웹호스팅 등)에 업로드합니다.
-   - 로컬에서 먼저 확인하고 싶다면, `webapp` 폴더에서 `python3 -m http.server 8000` 실행 후 `http://localhost:8000` 접속 (Pyodide는 인터넷 연결이 필요합니다)
+3. 이 저장소 전체를 정적 웹 호스팅(GitHub Pages, Netlify, 학교 웹호스팅 등)에 업로드합니다. (저장소 루트가 곧 웹 루트이므로 별도 하위 폴더 지정 없이 바로 배포 가능합니다.)
+   - 로컬에서 먼저 확인하고 싶다면, 저장소 루트에서 `python3 -m http.server 8000` 실행 후 `http://localhost:8000` 접속 (Pyodide는 인터넷 연결이 필요합니다)
 4. `index.html` 로 접속해 1단계부터 순서대로 진행해 봅니다.
 5. `hub.html` 에서 Apps Script에서 설정한 PIN으로 로그인해 공개 토글, 대시보드가 잘 동작하는지 확인합니다.
 
@@ -70,4 +78,4 @@ webapp/
 
 ## 다음 단계
 
-같은 패턴(`data/stages/*.json` 추가 + `assets/js/config.js`의 `STAGE_LIST`에 등록 + `appsscript/Code.gs`의 `ANSWER_KEY`에 정답 추가)으로 5단계(파일입출력, "기억의 동굴")부터 이어서 제작합니다. 커리큘럼 전체 순서는 매핑 문서의 2절 표를 따릅니다.
+같은 패턴(`data/stages/*.json` 추가 + `assets/js/config.js`의 `STAGE_LIST`에 등록 + `appsscript/Code.gs`의 `ANSWER_KEY`에 정답 추가)으로 6단계(1차원 리스트, "창고 마을")부터 이어서 제작합니다. 커리큘럼 전체 순서는 매핑 문서의 2절 표를 따릅니다.
