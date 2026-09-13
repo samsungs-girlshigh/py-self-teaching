@@ -64,6 +64,10 @@ const ANSWER_KEY = {
   stage12_sorting: {
     q1: ["opt_correct"],
     q2: ["opt_correct"]
+  },
+  stage13_functions: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 
