@@ -13,7 +13,8 @@ const STAGE_LIST = [
   { id: "stage6_list1d",    order: 6, chapter: "3단원 · 1차원 리스트",   title: "창고 마을",                   file: "data/stages/stage6_list1d.json" },
   { id: "stage7_list2d",    order: 7, chapter: "3단원 · 2차원 리스트",   title: "지도의 탑",                   file: "data/stages/stage7_list2d.json" },
   { id: "stage8_conditional1", order: 8, chapter: "4단원 · 조건문",      title: "갈림길 신전 Ⅰ",               file: "data/stages/stage8_conditional1.json" },
-  { id: "stage9_conditional2", order: 9, chapter: "4단원 · 다중 조건문", title: "갈림길 신전 Ⅱ",               file: "data/stages/stage9_conditional2.json" }
+  { id: "stage9_conditional2", order: 9, chapter: "4단원 · 다중 조건문", title: "갈림길 신전 Ⅱ",               file: "data/stages/stage9_conditional2.json" },
+  { id: "stage10_loops",     order: 10, chapter: "4단원 · 반복문",       title: "무한 회랑",                   file: "data/stages/stage10_loops.json" }
 ];
 
 function getStageMeta(stageId) {
