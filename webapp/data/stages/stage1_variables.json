@@ -1,0 +1,41 @@
+{
+  "id": "stage1_variables",
+  "title": "시작의 마을 - 캐릭터 각성",
+  "intro": [
+    "\"눈을 뜨니 낯선 마을이었다... 나는 코드 대륙의 견습 모험가다.\"",
+    "촌장: \"모험을 시작하려면 먼저 네 캐릭터의 정보를 저장해야 한단다. 변수(variable)라는 마법을 써보자!\""
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "변수", "desc": "값을 저장하는 기억 공간" },
+      { "term": "=", "desc": "오른쪽 값을 왼쪽 변수에 저장" },
+      { "term": "변수명 규칙", "desc": "영문/한글/숫자/밑줄 사용, 숫자로 시작 불가, 예약어 불가" }
+    ],
+    "exampleCode": "a = 10\nb, c = 2.5, \"A\"\nprint(a, b, c)\n\na = a * 2\nprint(a)"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "캐릭터의 체력(hp)을 100으로 저장하는 코드를 완성하세요.",
+      "codeTemplate": "hp {{blank}} 100\nprint(hp)",
+      "correctFeedback": "체력 100이 저장되었습니다!",
+      "options": [
+        { "id": "opt_eq", "code": "=" },
+        { "id": "opt_eqeq", "code": "==" },
+        { "id": "opt_arrow", "code": "=>" },
+        { "id": "opt_walrus", "code": ":=" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "변수 a에 저장된 값(10)을 두 배로 만드는 코드를 완성하세요. (정답은 한 가지가 아닐 수 있어요!)",
+      "codeTemplate": "a = 10\na = {{blank}}\nprint(a)",
+      "options": [
+        { "id": "opt_mul", "code": "a * 2" },
+        { "id": "opt_add", "code": "a + a" },
+        { "id": "opt_div", "code": "a / 2" },
+        { "id": "opt_lit", "code": "2" }
+      ]
+    }
+  ]
+}

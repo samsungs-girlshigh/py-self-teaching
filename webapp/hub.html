@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>코드 대륙 모험기 - 전체 단계</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="badge">전체 단계 허브</div>
+      <h1>코드 대륙 모험기 - 전체 스테이지</h1>
+      <p id="hub-status" class="small-note">불러오는 중...</p>
+    </div>
+
+    <div id="public-list-card" class="card" style="display:none;">
+      <h2>스테이지 목록</h2>
+      <ul class="link-list" id="stage-link-list"></ul>
+    </div>
+
+    <div class="card" id="teacher-login-card">
+      <h2>교사 로그인</h2>
+      <p class="small-note">PIN을 입력하면 공개 설정과 대시보드를 볼 수 있습니다.</p>
+      <input type="password" id="pin-input" placeholder="PIN 입력" style="max-width:200px; display:inline-block;" />
+      <button class="btn btn-primary" id="pin-confirm-btn">확인</button>
+      <div id="pin-error" class="feedback no" style="display:none;"></div>
+    </div>
+
+    <div class="card" id="admin-card" style="display:none;">
+      <h2>교사 관리자 화면</h2>
+      <div class="toggle-row">
+        <label class="switch">
+          <input type="checkbox" id="public-toggle" />
+          <span class="slider"></span>
+        </label>
+        <span id="toggle-label">전체 단계 링크 페이지 공개 여부</span>
+      </div>
+      <p class="small-note">
+        켜면 이 페이지(허브)를 학생 등 누구나 볼 수 있게 됩니다. 학습이 끝난 뒤 복습용으로 공개할 때 사용하세요.
+      </p>
+      <a class="btn btn-secondary" href="dashboard.html" id="dashboard-link">대시보드 보러가기</a>
+
+      <h2 style="margin-top:20px;">스테이지 목록 (관리자용)</h2>
+      <ul class="link-list" id="admin-link-list"></ul>
+    </div>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/hub.js"></script>
+</body>
+</html>

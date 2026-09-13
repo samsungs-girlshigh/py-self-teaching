@@ -1,0 +1,40 @@
+{
+  "id": "stage3_operators",
+  "title": "연산의 관문",
+  "intro": [
+    "문지기: \"이 관문을 지나려면 연산자를 다룰 줄 알아야 한다.\"",
+    "\"산술, 비교, 논리... 계산과 판단의 마법을 보여다오!\""
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "산술 연산자", "desc": "+ - * / // % ** (계산)" },
+      { "term": "비교 연산자", "desc": "> < >= <= == != (참/거짓 판단)" },
+      { "term": "연산 우선순위", "desc": "괄호 > 곱셈·나눗셈 > 덧셈·뺄셈" }
+    ],
+    "exampleCode": "print(11 + 4 / 2)\nn = 10\nprint(n > 5)\nprint(n <= 5)"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "레벨(level)이 3일 때, 공격력을 '레벨 × 10 + 5'로 계산하는 코드를 완성하세요. (정답이 여러 개일 수 있어요!)",
+      "codeTemplate": "level = 3\natk = {{blank}}\nprint(atk)",
+      "options": [
+        { "id": "opt_a", "code": "level * 10 + 5" },
+        { "id": "opt_b", "code": "level * (10 + 5)" },
+        { "id": "opt_c", "code": "level + 10 * 5" },
+        { "id": "opt_d", "code": "(level * 10) + 5" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "체력(hp)이 0 이하이면 '죽음' 상태로 판정하는 코드를 완성하세요. (정답이 여러 개일 수 있어요!)",
+      "codeTemplate": "hp = 0\nis_dead = {{blank}}\nprint(is_dead)",
+      "options": [
+        { "id": "opt_a", "code": "hp <= 0" },
+        { "id": "opt_b", "code": "hp =< 0" },
+        { "id": "opt_c", "code": "hp < 0" },
+        { "id": "opt_d", "code": "hp == 0 or hp < 0" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>코드 대륙 모험기</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div id="stage-root">
+      <div class="card">불러오는 중...</div>
+    </div>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/identify.js"></script>
+  <script src="assets/js/pyodide-client.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/stage-engine.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const stageId = params.get("id") || STAGE_LIST[0].id;
+    initStage(stageId);
+  </script>
+</body>
+</html>
