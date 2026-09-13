@@ -35,6 +35,11 @@ const ANSWER_KEY = {
   stage5_fileio: {
     q1: ["opt_append"],
     q2: ["opt_correct"]
+  },
+  stage6_list1d: {
+    q1: ["opt_append"],
+    q2: ["opt_remove"],
+    q3: ["opt_sort"]
   }
 };
 

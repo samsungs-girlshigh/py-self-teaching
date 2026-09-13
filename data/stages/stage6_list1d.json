@@ -1,0 +1,54 @@
+{
+  "id": "stage6_list1d",
+  "title": "창고 마을",
+  "intro": [
+    "창고지기: \"모험가라면 인벤토리 정리를 할 줄 알아야지!\"",
+    "\"여러 개의 아이템을 한 번에 다루려면 리스트(list)라는 마법 주머니를 써야 한단다.\""
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "리스트 생성", "desc": "대괄호[]로 여러 값을 하나로 묶음. 예: inventory = [\"물약\", \"검\"]" },
+      { "term": "인덱스", "desc": "리스트 안 값의 순서 번호(0부터 시작). inventory[0]은 첫 번째 값" },
+      { "term": "append(값)", "desc": "리스트 맨 뒤에 새 값을 추가" },
+      { "term": "remove(값)", "desc": "리스트에서 그 값과 같은 첫 번째 항목을 삭제 (없으면 오류)" },
+      { "term": "sort()", "desc": "리스트를 오름차순으로 직접 정렬(원본이 바뀜, 반환값은 없음)" }
+    ],
+    "exampleCode": "inventory = [\"물약\", \"검\"]\nprint(inventory[0])   # 물약\n\ninventory.append(\"방패\")\nprint(inventory)      # ['물약', '검', '방패']\n\ninventory.remove(\"물약\")\nprint(inventory)      # ['검', '방패']\n\ninventory.sort()\nprint(inventory)      # ['검', '방패']"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "인벤토리(inventory = [\"물약\", \"검\"])에 새로 얻은 아이템 \"방패\"를 맨 뒤에 추가하는 코드를 완성하세요.",
+      "codeTemplate": "inventory = [\"물약\", \"검\"]\n{{blank}}\nprint(inventory)",
+      "correctFeedback": "방패를 인벤토리에 넣었습니다!",
+      "options": [
+        { "id": "opt_append", "code": "inventory.append(\"방패\")" },
+        { "id": "opt_plusequal_str", "code": "inventory += \"방패\"" },
+        { "id": "opt_insert_zero", "code": "inventory.insert(0, \"방패\")" },
+        { "id": "opt_overwrite", "code": "inventory = \"방패\"" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "인벤토리(inventory = [\"물약\", \"검\", \"방패\"])에서 다 사용한 \"물약\"을 삭제하는 코드를 완성하세요. (결과는 ['검', '방패'] 여야 합니다.)",
+      "codeTemplate": "inventory = [\"물약\", \"검\", \"방패\"]\n{{blank}}\nprint(inventory)",
+      "options": [
+        { "id": "opt_remove", "code": "inventory.remove(\"물약\")" },
+        { "id": "opt_del_wrong_index", "code": "del inventory[1]" },
+        { "id": "opt_pop_no_arg", "code": "inventory.pop()" },
+        { "id": "opt_remove_wrong_value", "code": "inventory.remove(\"포션\")" }
+      ]
+    },
+    {
+      "id": "q3",
+      "prompt": "인벤토리(inventory = [\"검\", \"방패\", \"물약\"])를 가나다순으로 정렬하는 코드를 완성하세요. (결과는 ['검', '물약', '방패'] 여야 합니다.)",
+      "codeTemplate": "inventory = [\"검\", \"방패\", \"물약\"]\n{{blank}}\nprint(inventory)",
+      "options": [
+        { "id": "opt_sort", "code": "inventory.sort()" },
+        { "id": "opt_sorted_no_assign", "code": "sorted(inventory)" },
+        { "id": "opt_sort_reverse", "code": "inventory.sort(reverse=True)" },
+        { "id": "opt_sort_assign", "code": "inventory = inventory.sort()" }
+      ]
+    }
+  ]
+}

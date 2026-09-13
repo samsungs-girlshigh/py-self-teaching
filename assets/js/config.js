@@ -9,7 +9,8 @@ const STAGE_LIST = [
   { id: "stage2_datatypes",  order: 2, chapter: "3단원 · 변수와 자료형", title: "시작의 마을 - 스탯 창",       file: "data/stages/stage2_datatypes.json" },
   { id: "stage3_operators",  order: 3, chapter: "3단원 · 연산자",       title: "연산의 관문",                 file: "data/stages/stage3_operators.json" },
   { id: "stage4_io",        order: 4, chapter: "3단원 · 표준입출력",     title: "대화의 숲",                   file: "data/stages/stage4_io.json" },
-  { id: "stage5_fileio",    order: 5, chapter: "3단원 · 파일입출력",     title: "기억의 동굴",                 file: "data/stages/stage5_fileio.json" }
+  { id: "stage5_fileio",    order: 5, chapter: "3단원 · 파일입출력",     title: "기억의 동굴",                 file: "data/stages/stage5_fileio.json" },
+  { id: "stage6_list1d",    order: 6, chapter: "3단원 · 1차원 리스트",   title: "창고 마을",                   file: "data/stages/stage6_list1d.json" }
 ];
 
 function getStageMeta(stageId) {
