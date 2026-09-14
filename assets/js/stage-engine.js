@@ -92,9 +92,23 @@ function renderStage(stage, meta) {
   root.appendChild(nextCard);
 
   if (stage.questions.length === 0) {
-    // 문제가 없는 "설명 전용" 스테이지는 읽는 즉시 다음 관문으로 넘어갈 수 있게 한다.
-    nextCard.innerHTML = `<p class="small-note">내용을 확인했다면 아래에서 다음 관문으로 이동하세요.</p>`;
-    renderNextStageLink();
+    const idx = STAGE_LIST.findIndex(s => s.id === stage.id);
+    const isLastStage = idx === STAGE_LIST.length - 1;
+
+    if (isLastStage) {
+      // 마지막 스테이지(문제 없음)는 학생이 직접 완료 버튼을 눌러야 최종 클리어 연출이 나온다.
+      nextCard.innerHTML = `
+        <p class="small-note">내용을 다 확인했다면, 아래 버튼을 눌러 최종 보스를 처치하세요.</p>
+        <button class="btn btn-primary" id="final-clear-btn">최종 보스 처치 완료!</button>
+      `;
+      document.getElementById("final-clear-btn").addEventListener("click", () => {
+        renderNextStageLink();
+      });
+    } else {
+      // 문제가 없는 "설명 전용" 스테이지는 읽는 즉시 다음 관문으로 넘어갈 수 있게 한다.
+      nextCard.innerHTML = `<p class="small-note">내용을 확인했다면 아래에서 다음 관문으로 이동하세요.</p>`;
+      renderNextStageLink();
+    }
   } else {
     nextCard.innerHTML = `<p class="small-note">모든 문제를 맞히면 다음 관문으로 가는 길이 열립니다.</p>`;
   }
@@ -214,8 +228,43 @@ function renderNextStageLink() {
       `;
     }
   } else {
-    nextCard.innerHTML = `<h2>모든 스테이지를 완료했습니다! 축하합니다 🎉</h2>`;
+    nextCard.innerHTML = `
+      <div class="final-clear-card">
+        <div class="final-clear-title">🏆 코드 대륙 정복! 🏆</div>
+        <p class="final-clear-subtitle">모든 관문을 통과하고 진정한 코드 마스터가 되었습니다!</p>
+        <p>19개의 관문을 모두 클리어했습니다. 정말 수고 많으셨어요.</p>
+      </div>
+    `;
+    launchConfetti();
   }
+}
+
+// 화면 가득 컨페티(색종이 조각) 효과를 잠깐 띄운다. 외부 라이브러리 없이 순수 CSS 애니메이션으로 구현.
+function launchConfetti() {
+  const colors = ["#ffcb47", "#4fd1c5", "#ff6b6b", "#4ade80", "#f2f2f8"];
+  const layer = document.createElement("div");
+  layer.className = "confetti-layer";
+  document.body.appendChild(layer);
+
+  const pieceCount = 120;
+  for (let i = 0; i < pieceCount; i++) {
+    const piece = document.createElement("div");
+    piece.className = "confetti-piece";
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = 2.5 + Math.random() * 2 + "s";
+    piece.style.animationDelay = Math.random() * 1.2 + "s";
+    // 조각마다 살짝 다른 모양을 줘서 종이 조각처럼 보이게 함
+    if (Math.random() < 0.5) {
+      piece.style.borderRadius = "50%";
+    }
+    layer.appendChild(piece);
+  }
+
+  // 애니메이션이 다 끝나면 DOM에서 정리한다 (최대 지연 1.2s + 최대 길이 4.5s + 여유 0.5s)
+  setTimeout(() => {
+    layer.remove();
+  }, 6500);
 }
 
 function escapeHtml(str) {

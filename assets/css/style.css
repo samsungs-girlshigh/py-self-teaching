@@ -193,3 +193,61 @@ input:checked + .slider:before { transform: translateX(24px); }
 .link-list li { margin-bottom: 8px; }
 .link-list a { color: var(--accent2); text-decoration: none; font-weight: 600; }
 .link-list a:hover { text-decoration: underline; }
+
+/* ===== 최종 클리어 컨페티 연출 ===== */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 16px;
+  opacity: 0.9;
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0.4;
+  }
+}
+
+.final-clear-card {
+  text-align: center;
+  animation: final-clear-pop 0.6s ease-out;
+}
+@keyframes final-clear-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.final-clear-title {
+  font-size: 2.2rem;
+  margin: 8px 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: final-clear-shine 2.5s linear infinite;
+}
+@keyframes final-clear-shine {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+.final-clear-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
