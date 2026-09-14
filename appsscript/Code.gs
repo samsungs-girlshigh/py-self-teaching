@@ -80,6 +80,14 @@ const STAGE_HEADERS = [
 
 // ---------- 진입점 ----------
 
+function doGet(e) {
+  // 배포 URL을 브라우저로 직접 열어 상태를 확인할 때를 위한 안내용 응답.
+  // 실제 프론트엔드(api.js)는 이 함수가 아니라 doPost만 사용한다.
+  return ContentService
+    .createTextOutput(JSON.stringify({ ok: true, message: "코드 대륙 모험기 백엔드가 정상적으로 배포되어 있습니다. (이 주소는 POST 요청 전용입니다)" }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
 function doPost(e) {
   let result;
   try {
