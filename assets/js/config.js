@@ -20,7 +20,8 @@ const STAGE_LIST = [
   { id: "stage13_functions", order: 13, chapter: "5단원 · 함수",         title: "주문서 서재",                 file: "data/stages/stage13_functions.json" },
   { id: "stage14_scope",     order: 14, chapter: "5단원 · 지역/전역 변수", title: "결계의 방",                  file: "data/stages/stage14_scope.json" },
   { id: "stage15_search",    order: 15, chapter: "5단원 · 순차/이진 탐색", title: "탐색자의 미로",              file: "data/stages/stage15_search.json" },
-  { id: "stage16_modules",   order: 16, chapter: "5단원 · 모듈/라이브러리", title: "마법서 도서관",              file: "data/stages/stage16_modules.json" }
+  { id: "stage16_modules",   order: 16, chapter: "5단원 · 모듈/라이브러리", title: "마법서 도서관",              file: "data/stages/stage16_modules.json" },
+  { id: "stage17_dataanalysis", order: 17, chapter: "5단원 · 데이터 분석", title: "예언자의 탑",                file: "data/stages/stage17_dataanalysis.json" }
 ];
 
 function getStageMeta(stageId) {

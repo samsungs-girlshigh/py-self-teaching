@@ -89,8 +89,15 @@ function renderStage(stage, meta) {
   const nextCard = document.createElement("div");
   nextCard.className = "card";
   nextCard.id = "next-stage-card";
-  nextCard.innerHTML = `<p class="small-note">모든 문제를 맞히면 다음 관문으로 가는 길이 열립니다.</p>`;
   root.appendChild(nextCard);
+
+  if (stage.questions.length === 0) {
+    // 문제가 없는 "설명 전용" 스테이지는 읽는 즉시 다음 관문으로 넘어갈 수 있게 한다.
+    nextCard.innerHTML = `<p class="small-note">내용을 확인했다면 아래에서 다음 관문으로 이동하세요.</p>`;
+    renderNextStageLink();
+  } else {
+    nextCard.innerHTML = `<p class="small-note">모든 문제를 맞히면 다음 관문으로 가는 길이 열립니다.</p>`;
+  }
 }
 
 function renderQuestion(stageId, q, idx) {
@@ -184,26 +191,30 @@ function checkAllCorrectAndShowNext() {
   const allFeedback = document.querySelectorAll(".feedback.ok");
   const allQuestions = document.querySelectorAll("[id^='q-']");
   if (allFeedback.length >= allQuestions.length) {
-    const idx = STAGE_LIST.findIndex(s => s.id === currentStageId);
-    const next = STAGE_LIST[idx + 1];
-    const nextCard = document.getElementById("next-stage-card");
-    if (next) {
-      const isNextOpen = currentStageOpenMap && currentStageOpenMap[next.id];
-      if (isNextOpen) {
-        nextCard.innerHTML = `
-          <h2>관문 통과! 🚪</h2>
-          <p>다음 관문으로 이동하세요.</p>
-          <a class="btn btn-primary" href="stage.html?id=${next.id}">${next.title} 로 이동 →</a>
-        `;
-      } else {
-        nextCard.innerHTML = `
-          <h2>관문 통과! 🚪</h2>
-          <p>🔒 다음 관문(${next.title})은 아직 열리지 않았습니다. 선생님이 열어주실 때까지 기다려 주세요.</p>
-        `;
-      }
+    renderNextStageLink();
+  }
+}
+
+function renderNextStageLink() {
+  const idx = STAGE_LIST.findIndex(s => s.id === currentStageId);
+  const next = STAGE_LIST[idx + 1];
+  const nextCard = document.getElementById("next-stage-card");
+  if (next) {
+    const isNextOpen = currentStageOpenMap && currentStageOpenMap[next.id];
+    if (isNextOpen) {
+      nextCard.innerHTML = `
+        <h2>관문 통과! 🚪</h2>
+        <p>다음 관문으로 이동하세요.</p>
+        <a class="btn btn-primary" href="stage.html?id=${next.id}">${next.title} 로 이동 →</a>
+      `;
     } else {
-      nextCard.innerHTML = `<h2>모든 스테이지를 완료했습니다! 축하합니다 🎉</h2>`;
+      nextCard.innerHTML = `
+        <h2>관문 통과! 🚪</h2>
+        <p>🔒 다음 관문(${next.title})은 아직 열리지 않았습니다. 선생님이 열어주실 때까지 기다려 주세요.</p>
+      `;
     }
+  } else {
+    nextCard.innerHTML = `<h2>모든 스테이지를 완료했습니다! 축하합니다 🎉</h2>`;
   }
 }
 
