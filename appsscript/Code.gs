@@ -87,6 +87,18 @@ const ANSWER_KEY = {
   }
 };
 
+// 전체 스테이지 ID 목록 (순서대로). ANSWER_KEY에는 "문제가 있는" 스테이지만 들어있으므로,
+// 스테이지 잠금(공개) 여부 관리는 이 목록을 기준으로 한다 (17, 19단계처럼 문제 없는
+// 설명 전용 스테이지도 반드시 여기 포함되어야 허브에서 토글하고 학생이 접근할 수 있다).
+// assets/js/config.js 의 STAGE_LIST 와 항상 같은 스테이지 구성을 유지해야 한다.
+const STAGE_ORDER = [
+  "stage1_variables", "stage2_datatypes", "stage3_operators", "stage4_io",
+  "stage5_fileio", "stage6_list1d", "stage7_list2d", "stage8_conditional1",
+  "stage9_conditional2", "stage10_loops", "stage11_breakcontinue", "stage12_sorting",
+  "stage13_functions", "stage14_scope", "stage15_search", "stage16_modules",
+  "stage17_dataanalysis", "stage18_oop", "stage19_imageprocessing"
+];
+
 const STUDENT_LIST_SHEET = "학생명단";
 const SETTINGS_SHEET = "설정";
 const STAGE_HEADERS = [
@@ -216,7 +228,7 @@ const ALWAYS_OPEN_STAGE = "stage1_variables";
 
 function getStageOpenMap(settingsSheet) {
   const map = {};
-  Object.keys(ANSWER_KEY).forEach(stageId => {
+  STAGE_ORDER.forEach(stageId => {
     if (stageId === ALWAYS_OPEN_STAGE) {
       map[stageId] = true;
       return;
@@ -263,7 +275,7 @@ function handleSetStageOpen(body) {
   if (body.stageId === ALWAYS_OPEN_STAGE) {
     return { error: "1단계는 항상 공개 상태이며 잠글 수 없습니다." };
   }
-  if (!ANSWER_KEY[body.stageId]) {
+  if (STAGE_ORDER.indexOf(body.stageId) === -1) {
     return { error: "존재하지 않는 스테이지입니다." };
   }
   const sheet = getOrCreateSheet(SETTINGS_SHEET, ["key", "value"]);
