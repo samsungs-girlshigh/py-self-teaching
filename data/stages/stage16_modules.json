@@ -1,0 +1,42 @@
+{
+  "id": "stage16_modules",
+  "title": "마법서 도서관",
+  "intro": [
+    "사서 정령: \"모든 마법을 직접 만들 필요는 없다. 이미 만들어진 마법서(모듈)를 빌려 쓰면 되지.\"",
+    "\"random은 무작위 주문을, math는 정밀한 계산 주문을 담고 있단다. import로 먼저 서가에서 꺼내와야 해.\""
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "import 모듈이름", "desc": "다른 사람이 미리 만들어둔 기능 묶음(모듈)을 가져와 쓸 수 있게 함" },
+      { "term": "random.randint(a, b)", "desc": "a 이상 b 이하의 정수 중 하나를 무작위로 반환 (random 모듈)" },
+      { "term": "math.ceil(x)", "desc": "x보다 크거나 같은 가장 작은 정수로 올림 (math 모듈)" },
+      { "term": "math.floor(x)", "desc": "x보다 작거나 같은 가장 큰 정수로 내림. round(x)는 반올림으로, 셋은 서로 다른 결과를 낼 수 있음" }
+    ],
+    "exampleCode": "import random\nattack = random.randint(10, 20)   # 10~20 사이 무작위 정수\nprint(attack)\n\nimport math\ndamage = 17.3\nprint(math.ceil(damage))   # 18 (올림)\nprint(math.floor(damage))  # 17 (내림)\nprint(round(damage))       # 17 (반올림)"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "random 모듈을 이용해 10 이상 20 이하의 무작위 정수 공격력을 만들고, 그 값이 정수(int)인지 확인해 출력하는 코드를 완성하세요. (매번 값은 달라지지만, 결과는 항상 <class 'int'> 여야 합니다.)",
+      "codeTemplate": "{{blank}}\nattack = random.randint(10, 20)\nprint(type(attack).__name__)",
+      "correctFeedback": "정확히 random 모듈을 불러와 정수 공격력을 만들었습니다!",
+      "options": [
+        { "id": "opt_typo_module", "code": "import ramdom" },
+        { "id": "opt_no_import", "code": "pass" },
+        { "id": "opt_wrong_module", "code": "import math" },
+        { "id": "opt_correct", "code": "import random" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "math 모듈을 이용해, 데미지 계산 결과 17.3을 올림 처리해서 18을 만드는 코드를 완성하세요.",
+      "codeTemplate": "damage = 17.3\n{{blank}}\nprint(result)",
+      "options": [
+        { "id": "opt_typo_func", "code": "import math\nresult = math.celi(damage)" },
+        { "id": "opt_no_import", "code": "result = math.ceil(damage)" },
+        { "id": "opt_correct", "code": "import math\nresult = math.ceil(damage)" },
+        { "id": "opt_wrong_func", "code": "import math\nresult = math.floor(damage)" }
+      ]
+    }
+  ]
+}

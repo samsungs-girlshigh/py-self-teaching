@@ -1,0 +1,43 @@
+{
+  "id": "stage15_search",
+  "title": "탐색자의 미로",
+  "intro": [
+    "미로의 현자: \"미로 속 아이템을 찾는 방법은 두 가지다.\"",
+    "\"순서대로 하나씩 뒤지는 순차 탐색, 그리고 정렬된 목록을 반씩 잘라가며 찾는 이진 탐색. 상황에 맞게 써야 하느니라.\"",
+    "(주의: 반복문의 조건이나 증감을 잘못 쓰면 무한 루프에 빠질 수 있습니다. 4초가 지나면 자동으로 실행이 멈춥니다.)"
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "순차 탐색", "desc": "리스트를 처음부터 끝까지 하나씩 확인. 정렬 여부와 상관없이 쓸 수 있지만 느림" },
+      { "term": "이진 탐색", "desc": "정렬된 리스트에서만 가능. 가운데 값과 비교해 절반씩 범위를 좁혀나가 훨씬 빠름" },
+      { "term": "low, high, mid", "desc": "이진 탐색에서 탐색 범위의 시작(low), 끝(high), 중간(mid) 인덱스" },
+      { "term": "범위 좁히기", "desc": "찾는 값이 mid보다 크면 low를 mid+1로, 작으면 high를 mid-1로 이동시켜야 무한 루프를 피함" }
+    ],
+    "exampleCode": "# 순차 탐색\nitems = [\"검\", \"방패\", \"물약\"]\nfor i in range(len(items)):\n    if items[i] == \"물약\":\n        print(i)   # 2\n\n# 이진 탐색 (정렬된 리스트 전용)\nnumbers = [3, 7, 12, 18, 23]\nlow, high = 0, len(numbers) - 1\nwhile low <= high:\n    mid = (low + high) // 2\n    if numbers[mid] == 18:\n        print(mid)       # 3\n        break\n    elif numbers[mid] < 18:\n        low = mid + 1\n    else:\n        high = mid - 1"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "아이템 목록(items = [\"검\", \"방패\", \"투구\", \"물약\", \"투구\"])에서 \"투구\"를 순차 탐색으로 찾아 맨 처음 등장하는 위치(인덱스)를 반환하는 코드를 완성하세요. (결과는 2여야 합니다. 인덱스 4에도 투구가 있지만, 먼저 찾은 2를 반환해야 해요.)",
+      "codeTemplate": "def find_item(items, target):\n    {{blank}}\n\nitems = [\"검\", \"방패\", \"투구\", \"물약\", \"투구\"]\nprint(find_item(items, \"투구\"))",
+      "correctFeedback": "가장 먼저 나오는 위치를 정확히 찾았습니다!",
+      "options": [
+        { "id": "opt_wrong_return", "code": "for i in range(len(items)):\n        if items[i] == target:\n            return True\n    return False" },
+        { "id": "opt_wrong_loop_var", "code": "for i in items:\n        if i == target:\n            return i\n    return -1" },
+        { "id": "opt_correct", "code": "for i in range(len(items)):\n        if items[i] == target:\n            return i\n    return -1" },
+        { "id": "opt_no_return", "code": "result = -1\n    for i in range(len(items)):\n        if items[i] == target:\n            result = i\n    return result" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "정렬된 숫자 목록(numbers = [3, 7, 12, 18, 23, 34, 50, 61])에서 61을 이진 탐색으로 찾는 코드를 완성하세요. (결과는 7이어야 합니다. 무한 루프가 되는 보기를 고르면 실행 시 시간 초과가 뜨니 주의하세요.)",
+      "codeTemplate": "numbers = [3, 7, 12, 18, 23, 34, 50, 61]\ntarget = 61\nlow, high = 0, len(numbers) - 1\nresult = -1\n{{blank}}\nprint(result)",
+      "options": [
+        { "id": "opt_wrong_condition", "code": "while low < high:\n    mid = (low + high) // 2\n    if numbers[mid] == target:\n        result = mid\n        break\n    elif numbers[mid] < target:\n        low = mid + 1\n    else:\n        high = mid - 1" },
+        { "id": "opt_correct", "code": "while low <= high:\n    mid = (low + high) // 2\n    if numbers[mid] == target:\n        result = mid\n        break\n    elif numbers[mid] < target:\n        low = mid + 1\n    else:\n        high = mid - 1" },
+        { "id": "opt_no_increment", "code": "while low <= high:\n    mid = (low + high) // 2\n    if numbers[mid] == target:\n        result = mid\n        break\n    elif numbers[mid] < target:\n        low = mid\n    else:\n        high = mid" },
+        { "id": "opt_wrong_direction", "code": "while low <= high:\n    mid = (low + high) // 2\n    if numbers[mid] == target:\n        result = mid\n        break\n    elif numbers[mid] > target:\n        low = mid + 1\n    else:\n        high = mid - 1" }
+      ]
+    }
+  ]
+}

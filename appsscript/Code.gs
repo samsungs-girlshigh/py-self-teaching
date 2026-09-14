@@ -72,6 +72,14 @@ const ANSWER_KEY = {
   stage14_scope: {
     q1: ["opt_correct"],
     q2: ["opt_correct"]
+  },
+  stage15_search: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
+  },
+  stage16_modules: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 
