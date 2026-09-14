@@ -8,10 +8,22 @@
   ],
   "conceptCard": {
     "terms": [
-      { "term": "open(파일명, 모드)", "desc": "파일을 열기. \"w\"=쓰기(새로 덮어씀), \"a\"=이어쓰기, \"r\"=읽기" },
-      { "term": "write()", "desc": "파일(또는 이번 스테이지에서는 문자열)에 내용을 추가로 기록" },
-      { "term": "read() / split()", "desc": "저장된 전체 내용을 읽어와서, 원하는 구분자로 잘라 필요한 값만 꺼냄" },
-      { "term": "이어쓰기 vs 덮어쓰기", "desc": "+= 로 이어붙이면 기존 내용이 남고, = 로 다시 대입하면 기존 내용이 사라짐" }
+      {
+        "term": "open(파일명, 모드)",
+        "desc": "파일을 열기. \"w\"=쓰기(새로 덮어씀), \"a\"=이어쓰기, \"r\"=읽기"
+      },
+      {
+        "term": "write()",
+        "desc": "파일(또는 이번 스테이지에서는 문자열)에 내용을 추가로 기록"
+      },
+      {
+        "term": "read() / split()",
+        "desc": "저장된 전체 내용을 읽어와서, 원하는 구분자로 잘라 필요한 값만 꺼냄"
+      },
+      {
+        "term": "이어쓰기 vs 덮어쓰기",
+        "desc": "+= 로 이어붙이면 기존 내용이 남고, = 로 다시 대입하면 기존 내용이 사라짐"
+      }
     ],
     "exampleCode": "# 실제 파일이라면: open(\"save.txt\", \"a\")로 이어쓰기\nsave_data = \"\"\nsave_data += \"용사,100,5\\n\"\nprint(\"저장됨:\", save_data)\n\n# 다시 불러와서 각 항목 분리하기\nline = save_data.strip()\nname, hp, lv = line.split(\",\")\nprint(\"이름:\", name, \"/ 체력:\", hp, \"/ 레벨:\", lv)"
   },
@@ -21,10 +33,22 @@
       "prompt": "동굴에는 이미 전사(체력120, 레벨3)의 기록이 저장되어 있습니다(save_data = \"전사,120,3\\n\"). 여기에 마법사(체력80, 레벨2)의 기록을 '이어서' 저장하는 코드를 완성하세요. (기존 전사 기록이 사라지면 안 돼요!)",
       "codeTemplate": "save_data = \"전사,120,3\\n\"\n{{blank}}\nprint(save_data)",
       "options": [
-        { "id": "opt_append", "code": "save_data += \"마법사,80,2\\n\"" },
-        { "id": "opt_overwrite", "code": "save_data = \"마법사,80,2\\n\"" },
-        { "id": "opt_wrong_method", "code": "save_data.append(\"마법사,80,2\\n\")" },
-        { "id": "opt_wrong_format", "code": "save_data += \"마법사 80 2\\n\"" }
+        {
+          "id": "opt_overwrite",
+          "code": "save_data = \"마법사,80,2\\n\""
+        },
+        {
+          "id": "opt_append",
+          "code": "save_data += \"마법사,80,2\\n\""
+        },
+        {
+          "id": "opt_wrong_format",
+          "code": "save_data += \"마법사 80 2\\n\""
+        },
+        {
+          "id": "opt_wrong_method",
+          "code": "save_data.append(\"마법사,80,2\\n\")"
+        }
       ]
     },
     {
@@ -33,10 +57,22 @@
       "codeTemplate": "save_data = \"전사,120,3\\n마법사,80,2\\n\"\nlines = save_data.strip().split(\"\\n\")\nnames = [{{blank}} for line in lines]\nprint(names)",
       "correctFeedback": "명단에서 이름만 깔끔하게 뽑아냈습니다!",
       "options": [
-        { "id": "opt_correct", "code": "line.split(\",\")[0]" },
-        { "id": "opt_wrong_index", "code": "line.split(\",\")[1]" },
-        { "id": "opt_no_split", "code": "line" },
-        { "id": "opt_wrong_bracket", "code": "line.split(\",\")[-1]" }
+        {
+          "id": "opt_wrong_index",
+          "code": "line.split(\",\")[1]"
+        },
+        {
+          "id": "opt_wrong_bracket",
+          "code": "line.split(\",\")[-1]"
+        },
+        {
+          "id": "opt_correct",
+          "code": "line.split(\",\")[0]"
+        },
+        {
+          "id": "opt_no_split",
+          "code": "line"
+        }
       ]
     }
   ]

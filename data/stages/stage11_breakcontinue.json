@@ -7,9 +7,18 @@
   ],
   "conceptCard": {
     "terms": [
-      { "term": "break", "desc": "반복문을 그 즉시 완전히 종료 (남은 반복은 실행되지 않음)" },
-      { "term": "continue", "desc": "이번 반복만 건너뛰고, 다음 반복으로 넘어감 (반복 자체는 계속됨)" },
-      { "term": "차이점", "desc": "break는 '끝', continue는 '이번만 패스'" }
+      {
+        "term": "break",
+        "desc": "반복문을 그 즉시 완전히 종료 (남은 반복은 실행되지 않음)"
+      },
+      {
+        "term": "continue",
+        "desc": "이번 반복만 건너뛰고, 다음 반복으로 넘어감 (반복 자체는 계속됨)"
+      },
+      {
+        "term": "차이점",
+        "desc": "break는 '끝', continue는 '이번만 패스'"
+      }
     ],
     "exampleCode": "monsters = [\"슬라임\", \"고블린\", \"보스\", \"드래곤\"]\nfor m in monsters:\n    if m == \"보스\":\n        print(\"보스다! 도망친다\")\n        break            # 여기서 반복 자체가 끝남 (드래곤은 등장 안 함)\n    print(m, \"처치\")\n\nitems = [\"검\", \"물약\", \"방패\"]\nfor item in items:\n    if item == \"물약\":\n        continue          # 물약만 건너뛰고 계속 진행\n    print(item, \"획득\")"
   },
@@ -20,10 +29,22 @@
       "codeTemplate": "monsters = [\"슬라임\", \"고블린\", \"보스\", \"드래곤\"]\nlogs = []\nfor m in monsters:\n    {{blank}}\n    logs.append(f\"{m} 처치\")\nprint(logs)",
       "correctFeedback": "보스를 보자마자 정확히 탈출했습니다!",
       "options": [
-        { "id": "opt_correct", "code": "if m == \"보스\":\n        logs.append(\"보스 발견! 탈출한다\")\n        break" },
-        { "id": "opt_continue_instead", "code": "if m == \"보스\":\n        logs.append(\"보스 발견! 탈출한다\")\n        continue" },
-        { "id": "opt_wrong_condition", "code": "if m == \"드래곤\":\n        logs.append(\"보스 발견! 탈출한다\")\n        break" },
-        { "id": "opt_indent_bug", "code": "if m == \"보스\":\n        logs.append(\"보스 발견! 탈출한다\")\nbreak" }
+        {
+          "id": "opt_indent_bug",
+          "code": "if m == \"보스\":\n        logs.append(\"보스 발견! 탈출한다\")\nbreak"
+        },
+        {
+          "id": "opt_correct",
+          "code": "if m == \"보스\":\n        logs.append(\"보스 발견! 탈출한다\")\n        break"
+        },
+        {
+          "id": "opt_continue_instead",
+          "code": "if m == \"보스\":\n        logs.append(\"보스 발견! 탈출한다\")\n        continue"
+        },
+        {
+          "id": "opt_wrong_condition",
+          "code": "if m == \"드래곤\":\n        logs.append(\"보스 발견! 탈출한다\")\n        break"
+        }
       ]
     },
     {
@@ -31,10 +52,22 @@
       "prompt": "아이템 목록(items = [\"검\", \"물약\", \"방패\", \"물약\", \"투구\"])에서 \"물약\"만 건너뛰고 나머지 아이템을 모두 획득하는 코드를 완성하세요. (결과는 ['검 획득', '방패 획득', '투구 획득'] 여야 합니다.)",
       "codeTemplate": "items = [\"검\", \"물약\", \"방패\", \"물약\", \"투구\"]\nlogs = []\nfor item in items:\n    {{blank}}\n    logs.append(f\"{item} 획득\")\nprint(logs)",
       "options": [
-        { "id": "opt_correct", "code": "if item == \"물약\":\n        continue" },
-        { "id": "opt_break_instead", "code": "if item == \"물약\":\n        break" },
-        { "id": "opt_wrong_condition", "code": "if item != \"물약\":\n        continue" },
-        { "id": "opt_indent_bug", "code": "if item == \"물약\":\n        pass\n    continue" }
+        {
+          "id": "opt_break_instead",
+          "code": "if item == \"물약\":\n        break"
+        },
+        {
+          "id": "opt_correct",
+          "code": "if item == \"물약\":\n        continue"
+        },
+        {
+          "id": "opt_indent_bug",
+          "code": "if item == \"물약\":\n        pass\n    continue"
+        },
+        {
+          "id": "opt_wrong_condition",
+          "code": "if item != \"물약\":\n        continue"
+        }
       ]
     }
   ]

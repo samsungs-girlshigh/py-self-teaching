@@ -8,10 +8,22 @@
   ],
   "conceptCard": {
     "terms": [
-      { "term": "for i in range(n):", "desc": "0부터 n-1까지 정확히 n번 반복" },
-      { "term": "for i in range(a, b):", "desc": "a부터 b-1까지 반복 (b는 포함되지 않음!)" },
-      { "term": "while 조건:", "desc": "조건이 참인 동안 계속 반복. 조건이 언젠가 거짓이 되도록 반드시 값을 바꿔줘야 함" },
-      { "term": "무한 루프", "desc": "while의 조건이 절대 거짓이 되지 않아 영원히 끝나지 않는 반복 (버그의 흔한 원인)" }
+      {
+        "term": "for i in range(n):",
+        "desc": "0부터 n-1까지 정확히 n번 반복"
+      },
+      {
+        "term": "for i in range(a, b):",
+        "desc": "a부터 b-1까지 반복 (b는 포함되지 않음!)"
+      },
+      {
+        "term": "while 조건:",
+        "desc": "조건이 참인 동안 계속 반복. 조건이 언젠가 거짓이 되도록 반드시 값을 바꿔줘야 함"
+      },
+      {
+        "term": "무한 루프",
+        "desc": "while의 조건이 절대 거짓이 되지 않아 영원히 끝나지 않는 반복 (버그의 흔한 원인)"
+      }
     ],
     "exampleCode": "for i in range(1, 4):\n    print(i, \"번째 반복\")\n# 1번째 반복, 2번째 반복, 3번째 반복\n\ncount = 3\nwhile count > 0:\n    print(count)\n    count -= 1   # 이 줄이 없으면 무한 루프!\nprint(\"발사!\")"
   },
@@ -22,10 +34,22 @@
       "codeTemplate": "logs = []\n{{blank}}\nprint(logs)",
       "correctFeedback": "5마리 모두 정확한 순서로 처치했습니다!",
       "options": [
-        { "id": "opt_correct", "code": "for i in range(1, 6):\n    logs.append(f\"{i}번째 몬스터 처치\")" },
-        { "id": "opt_offbyone", "code": "for i in range(5):\n    logs.append(f\"{i}번째 몬스터 처치\")" },
-        { "id": "opt_short_range", "code": "for i in range(1, 5):\n    logs.append(f\"{i}번째 몬스터 처치\")" },
-        { "id": "opt_wrong_direction", "code": "for i in range(6, 1):\n    logs.append(f\"{i}번째 몬스터 처치\")" }
+        {
+          "id": "opt_wrong_direction",
+          "code": "for i in range(6, 1):\n    logs.append(f\"{i}번째 몬스터 처치\")"
+        },
+        {
+          "id": "opt_correct",
+          "code": "for i in range(1, 6):\n    logs.append(f\"{i}번째 몬스터 처치\")"
+        },
+        {
+          "id": "opt_offbyone",
+          "code": "for i in range(5):\n    logs.append(f\"{i}번째 몬스터 처치\")"
+        },
+        {
+          "id": "opt_short_range",
+          "code": "for i in range(1, 5):\n    logs.append(f\"{i}번째 몬스터 처치\")"
+        }
       ]
     },
     {
@@ -33,10 +57,22 @@
       "prompt": "3부터 1까지 하나씩 세고 마지막에 \"발사!\"를 출력하는 while문을 완성하세요. (결과는 [3, 2, 1, '발사!'] 여야 합니다. 무한 루프가 되는 보기를 선택하면 실행 시 시간 초과 오류가 뜨니 주의하세요.)",
       "codeTemplate": "logs = []\ncount = 3\n{{blank}}\nlogs.append(\"발사!\")\nprint(logs)",
       "options": [
-        { "id": "opt_correct", "code": "while count > 0:\n    logs.append(count)\n    count -= 1" },
-        { "id": "opt_indent_bug", "code": "while count > 0:\n    logs.append(count)\ncount -= 1" },
-        { "id": "opt_wrong_condition", "code": "while count < 0:\n    logs.append(count)\n    count -= 1" },
-        { "id": "opt_wrong_direction", "code": "while count > 0:\n    logs.append(count)\n    count += 1" }
+        {
+          "id": "opt_indent_bug",
+          "code": "while count > 0:\n    logs.append(count)\ncount -= 1"
+        },
+        {
+          "id": "opt_wrong_condition",
+          "code": "while count < 0:\n    logs.append(count)\n    count -= 1"
+        },
+        {
+          "id": "opt_wrong_direction",
+          "code": "while count > 0:\n    logs.append(count)\n    count += 1"
+        },
+        {
+          "id": "opt_correct",
+          "code": "while count > 0:\n    logs.append(count)\n    count -= 1"
+        }
       ]
     }
   ]

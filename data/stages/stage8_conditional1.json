@@ -7,10 +7,22 @@
   ],
   "conceptCard": {
     "terms": [
-      { "term": "if 조건:", "desc": "조건이 참일 때만 아래 들여쓴 코드를 실행" },
-      { "term": "else:", "desc": "if의 조건이 거짓일 때 대신 실행할 코드" },
-      { "term": "중첩 if", "desc": "if 블록 안에 또 다른 if를 넣어, 두 가지 조건을 모두 확인" },
-      { "term": "들여쓰기", "desc": "if/else에 속한 코드는 반드시 같은 만큼 들여써야 함 (보통 스페이스 4칸)" }
+      {
+        "term": "if 조건:",
+        "desc": "조건이 참일 때만 아래 들여쓴 코드를 실행"
+      },
+      {
+        "term": "else:",
+        "desc": "if의 조건이 거짓일 때 대신 실행할 코드"
+      },
+      {
+        "term": "중첩 if",
+        "desc": "if 블록 안에 또 다른 if를 넣어, 두 가지 조건을 모두 확인"
+      },
+      {
+        "term": "들여쓰기",
+        "desc": "if/else에 속한 코드는 반드시 같은 만큼 들여써야 함 (보통 스페이스 4칸)"
+      }
     ],
     "exampleCode": "hp = 50\nif hp <= 0:\n    print(\"쓰러졌다\")\nelse:\n    print(\"아직 싸울 수 있다\")\n\nhas_key = True\nif has_key:\n    if hp > 0:\n        print(\"문을 연다\")\n    else:\n        print(\"문이 굳게 닫혀있다\")\nelse:\n    print(\"문이 굳게 닫혀있다\")"
   },
@@ -21,10 +33,22 @@
       "codeTemplate": "hp = 50\n{{blank}}",
       "correctFeedback": "정확한 조건 판단입니다!",
       "options": [
-        { "id": "opt_correct", "code": "if hp <= 0:\n    print(\"쓰러졌다\")\nelse:\n    print(\"아직 싸울 수 있다\")" },
-        { "id": "opt_wrong_direction", "code": "if hp >= 0:\n    print(\"쓰러졌다\")\nelse:\n    print(\"아직 싸울 수 있다\")" },
-        { "id": "opt_no_else", "code": "if hp <= 0:\n    print(\"쓰러졌다\")\nif hp <= 0:\n    print(\"쓰러졌다\")" },
-        { "id": "opt_assign_bug", "code": "if hp = 0:\n    print(\"쓰러졌다\")\nelse:\n    print(\"아직 싸울 수 있다\")" }
+        {
+          "id": "opt_assign_bug",
+          "code": "if hp = 0:\n    print(\"쓰러졌다\")\nelse:\n    print(\"아직 싸울 수 있다\")"
+        },
+        {
+          "id": "opt_correct",
+          "code": "if hp <= 0:\n    print(\"쓰러졌다\")\nelse:\n    print(\"아직 싸울 수 있다\")"
+        },
+        {
+          "id": "opt_wrong_direction",
+          "code": "if hp >= 0:\n    print(\"쓰러졌다\")\nelse:\n    print(\"아직 싸울 수 있다\")"
+        },
+        {
+          "id": "opt_no_else",
+          "code": "if hp <= 0:\n    print(\"쓰러졌다\")\nif hp <= 0:\n    print(\"쓰러졌다\")"
+        }
       ]
     },
     {
@@ -32,10 +56,22 @@
       "prompt": "열쇠가 없고(has_key = False) 체력(hp)이 50일 때, '열쇠를 가지고 있고 + 체력이 0보다 클 때만' 문을 열도록 중첩 if로 완성하세요. (이번엔 열쇠가 없으므로 \"문이 굳게 닫혀있다\"가 나와야 합니다.)",
       "codeTemplate": "has_key = False\nhp = 50\n{{blank}}",
       "options": [
-        { "id": "opt_correct", "code": "if has_key:\n    if hp > 0:\n        print(\"문을 연다\")\n    else:\n        print(\"문이 굳게 닫혀있다\")\nelse:\n    print(\"문이 굳게 닫혀있다\")" },
-        { "id": "opt_or_like", "code": "result = \"문이 굳게 닫혀있다\"\nif has_key:\n    result = \"문을 연다\"\nif hp > 0:\n    result = \"문을 연다\"\nprint(result)" },
-        { "id": "opt_indent_bug", "code": "if has_key:\n    pass\nif hp > 0:\n    print(\"문을 연다\")\nelse:\n    print(\"문이 굳게 닫혀있다\")" },
-        { "id": "opt_missing_condition", "code": "if hp > 0:\n    print(\"문을 연다\")\nelse:\n    print(\"문이 굳게 닫혀있다\")" }
+        {
+          "id": "opt_or_like",
+          "code": "result = \"문이 굳게 닫혀있다\"\nif has_key:\n    result = \"문을 연다\"\nif hp > 0:\n    result = \"문을 연다\"\nprint(result)"
+        },
+        {
+          "id": "opt_indent_bug",
+          "code": "if has_key:\n    pass\nif hp > 0:\n    print(\"문을 연다\")\nelse:\n    print(\"문이 굳게 닫혀있다\")"
+        },
+        {
+          "id": "opt_missing_condition",
+          "code": "if hp > 0:\n    print(\"문을 연다\")\nelse:\n    print(\"문이 굳게 닫혀있다\")"
+        },
+        {
+          "id": "opt_correct",
+          "code": "if has_key:\n    if hp > 0:\n        print(\"문을 연다\")\n    else:\n        print(\"문이 굳게 닫혀있다\")\nelse:\n    print(\"문이 굳게 닫혀있다\")"
+        }
       ]
     }
   ]

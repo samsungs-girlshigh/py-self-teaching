@@ -7,9 +7,18 @@
   ],
   "conceptCard": {
     "terms": [
-      { "term": "elif", "desc": "\"else if\"의 줄임. 앞 조건이 거짓일 때만 다음 조건을 검사" },
-      { "term": "검사 순서", "desc": "위에서부터 순서대로 검사하다가, 처음 참인 조건 하나만 실행하고 끝남" },
-      { "term": "마지막 else", "desc": "위의 모든 조건이 거짓일 때 실행될 '기본값' 역할" }
+      {
+        "term": "elif",
+        "desc": "\"else if\"의 줄임. 앞 조건이 거짓일 때만 다음 조건을 검사"
+      },
+      {
+        "term": "검사 순서",
+        "desc": "위에서부터 순서대로 검사하다가, 처음 참인 조건 하나만 실행하고 끝남"
+      },
+      {
+        "term": "마지막 else",
+        "desc": "위의 모든 조건이 거짓일 때 실행될 '기본값' 역할"
+      }
     ],
     "exampleCode": "score = 70\nif score >= 90:\n    print(\"S\")\nelif score >= 70:\n    print(\"A\")\nelif score >= 50:\n    print(\"B\")\nelse:\n    print(\"C\")\n# 90 이상부터 순서대로 검사하다가 70 이상에서 멈추고 A를 출력"
   },
@@ -20,10 +29,22 @@
       "codeTemplate": "score = 70\n{{blank}}",
       "correctFeedback": "정확한 등급 판정입니다!",
       "options": [
-        { "id": "opt_correct", "code": "if score >= 90:\n    print(\"S\")\nelif score >= 70:\n    print(\"A\")\nelif score >= 50:\n    print(\"B\")\nelse:\n    print(\"C\")" },
-        { "id": "opt_separate_if", "code": "grade = \"C\"\nif score >= 90:\n    grade = \"S\"\nif score >= 70:\n    grade = \"A\"\nif score >= 50:\n    grade = \"B\"\nprint(grade)" },
-        { "id": "opt_wrong_order", "code": "if score >= 50:\n    print(\"B\")\nelif score >= 70:\n    print(\"A\")\nelif score >= 90:\n    print(\"S\")\nelse:\n    print(\"C\")" },
-        { "id": "opt_wrong_boundary", "code": "if score > 90:\n    print(\"S\")\nelif score > 70:\n    print(\"A\")\nelif score > 50:\n    print(\"B\")\nelse:\n    print(\"C\")" }
+        {
+          "id": "opt_wrong_boundary",
+          "code": "if score > 90:\n    print(\"S\")\nelif score > 70:\n    print(\"A\")\nelif score > 50:\n    print(\"B\")\nelse:\n    print(\"C\")"
+        },
+        {
+          "id": "opt_wrong_order",
+          "code": "if score >= 50:\n    print(\"B\")\nelif score >= 70:\n    print(\"A\")\nelif score >= 90:\n    print(\"S\")\nelse:\n    print(\"C\")"
+        },
+        {
+          "id": "opt_correct",
+          "code": "if score >= 90:\n    print(\"S\")\nelif score >= 70:\n    print(\"A\")\nelif score >= 50:\n    print(\"B\")\nelse:\n    print(\"C\")"
+        },
+        {
+          "id": "opt_separate_if",
+          "code": "grade = \"C\"\nif score >= 90:\n    grade = \"S\"\nif score >= 70:\n    grade = \"A\"\nif score >= 50:\n    grade = \"B\"\nprint(grade)"
+        }
       ]
     },
     {
@@ -31,10 +52,22 @@
       "prompt": "몬스터(monster)가 \"정예\"일 때, \"보스\"면 \"전설 아이템\", \"정예\"면 \"희귀 아이템\", 그 외에는 \"일반 아이템\"을 출력하는 코드를 완성하세요. (monster=\"정예\"이므로 \"희귀 아이템\"이 나와야 합니다.)",
       "codeTemplate": "monster = \"정예\"\n{{blank}}",
       "options": [
-        { "id": "opt_correct", "code": "if monster == \"보스\":\n    print(\"전설 아이템\")\nelif monster == \"정예\":\n    print(\"희귀 아이템\")\nelse:\n    print(\"일반 아이템\")" },
-        { "id": "opt_no_elif", "code": "result = None\nif monster == \"보스\":\n    result = \"전설 아이템\"\nif monster == \"일반\":\n    result = \"일반 아이템\"\nprint(result)" },
-        { "id": "opt_typo_condition", "code": "if monster == \"보스\":\n    print(\"전설 아이템\")\nelif monster == \"정 예\":\n    print(\"희귀 아이템\")\nelse:\n    print(\"일반 아이템\")" },
-        { "id": "opt_assign_bug", "code": "if monster = \"보스\":\n    print(\"전설 아이템\")\nelif monster == \"정예\":\n    print(\"희귀 아이템\")\nelse:\n    print(\"일반 아이템\")" }
+        {
+          "id": "opt_assign_bug",
+          "code": "if monster = \"보스\":\n    print(\"전설 아이템\")\nelif monster == \"정예\":\n    print(\"희귀 아이템\")\nelse:\n    print(\"일반 아이템\")"
+        },
+        {
+          "id": "opt_typo_condition",
+          "code": "if monster == \"보스\":\n    print(\"전설 아이템\")\nelif monster == \"정 예\":\n    print(\"희귀 아이템\")\nelse:\n    print(\"일반 아이템\")"
+        },
+        {
+          "id": "opt_no_elif",
+          "code": "result = None\nif monster == \"보스\":\n    result = \"전설 아이템\"\nif monster == \"일반\":\n    result = \"일반 아이템\"\nprint(result)"
+        },
+        {
+          "id": "opt_correct",
+          "code": "if monster == \"보스\":\n    print(\"전설 아이템\")\nelif monster == \"정예\":\n    print(\"희귀 아이템\")\nelse:\n    print(\"일반 아이템\")"
+        }
       ]
     }
   ]

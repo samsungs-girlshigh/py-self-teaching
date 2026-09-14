@@ -7,11 +7,26 @@
   ],
   "conceptCard": {
     "terms": [
-      { "term": "정수형(int)", "desc": "예: 3, 100" },
-      { "term": "실수형(float)", "desc": "예: 1.5, 100.5" },
-      { "term": "불형(bool)", "desc": "True 또는 False" },
-      { "term": "문자열(str)", "desc": "따옴표로 감싼 문자, 예: \"용사\"" },
-      { "term": "type()", "desc": "괄호 안 값의 자료형을 알려주는 함수" }
+      {
+        "term": "정수형(int)",
+        "desc": "예: 3, 100"
+      },
+      {
+        "term": "실수형(float)",
+        "desc": "예: 1.5, 100.5"
+      },
+      {
+        "term": "불형(bool)",
+        "desc": "True 또는 False"
+      },
+      {
+        "term": "문자열(str)",
+        "desc": "따옴표로 감싼 문자, 예: \"용사\""
+      },
+      {
+        "term": "type()",
+        "desc": "괄호 안 값의 자료형을 알려주는 함수"
+      }
     ],
     "exampleCode": "a = 3\nprint(a, type(a))\n\nb = True\nprint(b, type(b))\n\ne = \"apple\"\nprint(e, type(e))"
   },
@@ -21,10 +36,22 @@
       "prompt": "캐릭터의 이름을 문자열로 저장하는 코드를 완성하세요.",
       "codeTemplate": "name = {{blank}}\nprint(name, type(name))",
       "options": [
-        { "id": "opt_double", "code": "\"용사\"" },
-        { "id": "opt_single", "code": "'용사'" },
-        { "id": "opt_bare", "code": "용사" },
-        { "id": "opt_strcall", "code": "str(용사)" }
+        {
+          "id": "opt_strcall",
+          "code": "str(용사)"
+        },
+        {
+          "id": "opt_bare",
+          "code": "용사"
+        },
+        {
+          "id": "opt_single",
+          "code": "'용사'"
+        },
+        {
+          "id": "opt_double",
+          "code": "\"용사\""
+        }
       ]
     },
     {
@@ -32,10 +59,22 @@
       "prompt": "체력(hp)에 100.5를 저장하고, 그 변수의 자료형을 출력하는 코드를 완성하세요.",
       "codeTemplate": "hp = 100.5\nprint(type({{blank}}))",
       "options": [
-        { "id": "opt_var", "code": "hp" },
-        { "id": "opt_strlit", "code": "\"hp\"" },
-        { "id": "opt_wrongcase", "code": "Hp" },
-        { "id": "opt_num", "code": "100" }
+        {
+          "id": "opt_num",
+          "code": "100"
+        },
+        {
+          "id": "opt_wrongcase",
+          "code": "Hp"
+        },
+        {
+          "id": "opt_strlit",
+          "code": "\"hp\""
+        },
+        {
+          "id": "opt_var",
+          "code": "hp"
+        }
       ]
     }
   ]

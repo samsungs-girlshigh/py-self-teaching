@@ -7,10 +7,22 @@
   ],
   "conceptCard": {
     "terms": [
-      { "term": "def 함수이름(매개변수):", "desc": "함수를 정의하는 문법. 매개변수는 함수가 입력받는 값" },
-      { "term": "return 값", "desc": "함수가 계산을 마치고 돌려주는 결과값. return이 없으면 함수는 None을 돌려줌" },
-      { "term": "함수 호출", "desc": "함수이름(전달할 값)처럼 괄호에 실제 값(인자)을 넣어 함수를 실행시키는 것" },
-      { "term": "매개변수 순서", "desc": "호출할 때 넣는 값의 순서가 함수 정의의 매개변수 순서와 그대로 대응됨" }
+      {
+        "term": "def 함수이름(매개변수):",
+        "desc": "함수를 정의하는 문법. 매개변수는 함수가 입력받는 값"
+      },
+      {
+        "term": "return 값",
+        "desc": "함수가 계산을 마치고 돌려주는 결과값. return이 없으면 함수는 None을 돌려줌"
+      },
+      {
+        "term": "함수 호출",
+        "desc": "함수이름(전달할 값)처럼 괄호에 실제 값(인자)을 넣어 함수를 실행시키는 것"
+      },
+      {
+        "term": "매개변수 순서",
+        "desc": "호출할 때 넣는 값의 순서가 함수 정의의 매개변수 순서와 그대로 대응됨"
+      }
     ],
     "exampleCode": "def atk_power(level, weapon_bonus):\n    return level * 10 + weapon_bonus\n\nresult = atk_power(3, 5)   # level=3, weapon_bonus=5\nprint(result)              # 35\n\ndef take_damage(hp, damage):\n    return hp - damage\n\nhp = 50\nhp = take_damage(hp, 20)   # 반드시 결과를 다시 hp에 저장해야 값이 바뀜\nprint(hp)                  # 30"
   },
@@ -21,10 +33,22 @@
       "codeTemplate": "{{blank}}\n\nprint(atk_power(3, 5))",
       "correctFeedback": "함수가 정확한 공격력을 계산해냈습니다!",
       "options": [
-        { "id": "opt_correct", "code": "def atk_power(level, weapon_bonus):\n    return level * 10 + weapon_bonus" },
-        { "id": "opt_print_instead", "code": "def atk_power(level, weapon_bonus):\n    print(level * 10 + weapon_bonus)" },
-        { "id": "opt_wrong_param_order", "code": "def atk_power(level, weapon_bonus):\n    return weapon_bonus * 10 + level" },
-        { "id": "opt_missing_colon", "code": "def atk_power(level, weapon_bonus)\n    return level * 10 + weapon_bonus" }
+        {
+          "id": "opt_print_instead",
+          "code": "def atk_power(level, weapon_bonus):\n    print(level * 10 + weapon_bonus)"
+        },
+        {
+          "id": "opt_correct",
+          "code": "def atk_power(level, weapon_bonus):\n    return level * 10 + weapon_bonus"
+        },
+        {
+          "id": "opt_wrong_param_order",
+          "code": "def atk_power(level, weapon_bonus):\n    return weapon_bonus * 10 + level"
+        },
+        {
+          "id": "opt_missing_colon",
+          "code": "def atk_power(level, weapon_bonus)\n    return level * 10 + weapon_bonus"
+        }
       ]
     },
     {
@@ -32,10 +56,22 @@
       "prompt": "이미 정의된 take_damage(hp, damage) 함수(체력에서 데미지를 뺀 값을 반환)를 이용해, 체력 50에서 데미지 20을 입힌 뒤 결과를 hp에 반영하는 코드를 완성하세요. (결과는 30이어야 합니다.)",
       "codeTemplate": "def take_damage(hp, damage):\n    return hp - damage\n\nhp = 50\n{{blank}}\nprint(hp)",
       "options": [
-        { "id": "opt_correct", "code": "hp = take_damage(hp, 20)" },
-        { "id": "opt_no_assign", "code": "take_damage(hp, 20)" },
-        { "id": "opt_wrong_arg_order", "code": "hp = take_damage(20, hp)" },
-        { "id": "opt_typo_name", "code": "hp = take_damages(hp, 20)" }
+        {
+          "id": "opt_typo_name",
+          "code": "hp = take_damages(hp, 20)"
+        },
+        {
+          "id": "opt_wrong_arg_order",
+          "code": "hp = take_damage(20, hp)"
+        },
+        {
+          "id": "opt_correct",
+          "code": "hp = take_damage(hp, 20)"
+        },
+        {
+          "id": "opt_no_assign",
+          "code": "take_damage(hp, 20)"
+        }
       ]
     }
   ]
