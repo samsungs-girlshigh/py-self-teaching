@@ -105,6 +105,9 @@ function doPost(e) {
       case "setHubPublic":
         result = handleSetHubPublic(body);
         break;
+      case "setStageOpen":
+        result = handleSetStageOpen(body);
+        break;
       case "getDashboard":
         result = handleGetDashboard(body);
         break;
@@ -129,6 +132,11 @@ function handleSubmit(body) {
   }
   if (!student || !student.grade || !student.classNo || !student.number || !student.name) {
     return { error: "학생 정보가 올바르지 않습니다." };
+  }
+
+  const settingsSheet = getOrCreateSheet(SETTINGS_SHEET, ["key", "value"]);
+  if (!isStageOpen(stageId, settingsSheet)) {
+    return { error: "아직 열리지 않은 스테이지입니다.", locked: true };
   }
 
   const correctSet = ANSWER_KEY[stageId][questionId];
@@ -187,10 +195,36 @@ function handleSubmit(body) {
 
 // ---------- 공개 설정 ----------
 
+// 스테이지별 공개 여부 기본값: 1단계만 항상 공개, 나머지는 교사가 열어주기 전까지 비공개.
+const ALWAYS_OPEN_STAGE = "stage1_variables";
+
+function getStageOpenMap(settingsSheet) {
+  const map = {};
+  Object.keys(ANSWER_KEY).forEach(stageId => {
+    if (stageId === ALWAYS_OPEN_STAGE) {
+      map[stageId] = true;
+      return;
+    }
+    const value = getSettingValue(settingsSheet, "stageOpen_" + stageId);
+    // 설정이 아예 없으면(교사가 아직 건드리지 않은 스테이지) 기본값은 비공개.
+    map[stageId] = value === "TRUE" || value === true;
+  });
+  return map;
+}
+
+function isStageOpen(stageId, settingsSheet) {
+  if (stageId === ALWAYS_OPEN_STAGE) return true;
+  const value = getSettingValue(settingsSheet, "stageOpen_" + stageId);
+  return value === "TRUE" || value === true;
+}
+
 function handleGetSettings() {
   const sheet = getOrCreateSheet(SETTINGS_SHEET, ["key", "value"]);
   const value = getSettingValue(sheet, "hubPublic");
-  return { hubPublic: value === "TRUE" || value === true };
+  return {
+    hubPublic: value === "TRUE" || value === true,
+    stageOpen: getStageOpenMap(sheet)
+  };
 }
 
 function handleVerifyPin(body) {
@@ -204,6 +238,21 @@ function handleSetHubPublic(body) {
   const sheet = getOrCreateSheet(SETTINGS_SHEET, ["key", "value"]);
   setSettingValue(sheet, "hubPublic", body.isPublic ? "TRUE" : "FALSE");
   return { ok: true, hubPublic: !!body.isPublic };
+}
+
+function handleSetStageOpen(body) {
+  if (!checkPin(body.pin)) {
+    return { error: "PIN이 올바르지 않습니다." };
+  }
+  if (body.stageId === ALWAYS_OPEN_STAGE) {
+    return { error: "1단계는 항상 공개 상태이며 잠글 수 없습니다." };
+  }
+  if (!ANSWER_KEY[body.stageId]) {
+    return { error: "존재하지 않는 스테이지입니다." };
+  }
+  const sheet = getOrCreateSheet(SETTINGS_SHEET, ["key", "value"]);
+  setSettingValue(sheet, "stageOpen_" + body.stageId, body.isOpen ? "TRUE" : "FALSE");
+  return { ok: true, stageOpen: getStageOpenMap(sheet) };
 }
 
 // ---------- 교사 대시보드 ----------

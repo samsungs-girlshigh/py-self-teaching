@@ -9,6 +9,46 @@ function renderLinkList(targetId) {
     .join("");
 }
 
+const ALWAYS_OPEN_STAGE_ID = "stage1_variables";
+
+function renderStageOpenList(pin, stageOpenMap) {
+  const ul = document.getElementById("stage-open-list");
+  ul.innerHTML = STAGE_LIST
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .map(s => {
+      const isAlwaysOpen = s.id === ALWAYS_OPEN_STAGE_ID;
+      const isOpen = isAlwaysOpen || !!stageOpenMap[s.id];
+      return `
+        <li class="toggle-row">
+          <label class="switch">
+            <input type="checkbox" class="stage-open-toggle" data-stage-id="${s.id}"
+              ${isOpen ? "checked" : ""} ${isAlwaysOpen ? "disabled" : ""} />
+            <span class="slider"></span>
+          </label>
+          <span>${s.order}. ${s.chapter} - ${s.title}${isAlwaysOpen ? " (항상 공개)" : ""}</span>
+        </li>
+      `;
+    })
+    .join("");
+
+  ul.querySelectorAll(".stage-open-toggle").forEach(toggle => {
+    toggle.addEventListener("change", async (e) => {
+      const stageId = e.target.dataset.stageId;
+      const isOpen = e.target.checked;
+      e.target.disabled = true;
+      try {
+        await setStageOpen(pin, stageId, isOpen);
+      } catch (err) {
+        alert("스테이지 공개 설정 변경 중 오류: " + err.message);
+        e.target.checked = !isOpen;
+      } finally {
+        e.target.disabled = false;
+      }
+    });
+  });
+}
+
 async function initHub() {
   const statusEl = document.getElementById("hub-status");
   try {
@@ -26,7 +66,7 @@ async function initHub() {
     if (savedPin) {
       const verify = await verifyTeacherPin(savedPin);
       if (verify.ok) {
-        showAdminPanel(savedPin, settings.hubPublic);
+        showAdminPanel(savedPin, settings);
       }
     }
   } catch (e) {
@@ -34,11 +74,12 @@ async function initHub() {
   }
 }
 
-function showAdminPanel(pin, hubPublic) {
+function showAdminPanel(pin, settings) {
   document.getElementById("teacher-login-card").style.display = "none";
   document.getElementById("admin-card").style.display = "block";
-  document.getElementById("public-toggle").checked = !!hubPublic;
+  document.getElementById("public-toggle").checked = !!settings.hubPublic;
   renderLinkList("admin-link-list");
+  renderStageOpenList(pin, settings.stageOpen || {});
 
   document.getElementById("public-toggle").addEventListener("change", async (e) => {
     const isPublic = e.target.checked;
@@ -59,7 +100,7 @@ document.getElementById("pin-confirm-btn").addEventListener("click", async () =>
     if (result.ok) {
       sessionStorage.setItem("teacher_pin", pin);
       const settings = await getPublicSettings();
-      showAdminPanel(pin, settings.hubPublic);
+      showAdminPanel(pin, settings);
     } else {
       errorBox.style.display = "block";
       errorBox.textContent = "PIN이 올바르지 않습니다.";

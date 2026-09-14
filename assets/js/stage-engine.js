@@ -3,6 +3,7 @@
 
 let currentStudent = null;
 let currentStageId = null;
+let currentStageOpenMap = null; // { stageId: true/false } - 서버에서 받아온 공개 상태
 
 async function initStage(stageId) {
   currentStageId = stageId;
@@ -13,6 +14,23 @@ async function initStage(stageId) {
     return;
   }
 
+  // 잠금 여부부터 서버에 확인한다. 학생 식별 화면(개인정보 입력)보다 먼저 확인해서,
+  // 잠긴 스테이지는 문제 내용은 물론 식별 화면조차 보여주지 않는다 (URL 직접 접근 차단).
+  let settings;
+  try {
+    settings = await getPublicSettings();
+  } catch (e) {
+    document.getElementById("stage-root").innerHTML =
+      `<div class="card">설정을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요. (${e.message})</div>`;
+    return;
+  }
+  currentStageOpenMap = settings.stageOpen || {};
+
+  if (!currentStageOpenMap[stageId]) {
+    renderLockedStage(meta);
+    return;
+  }
+
   const res = await fetch(meta.file);
   const stage = await res.json();
 
@@ -20,6 +38,18 @@ async function initStage(stageId) {
     currentStudent = info;
     renderStage(stage, meta);
   });
+}
+
+function renderLockedStage(meta) {
+  const root = document.getElementById("stage-root");
+  root.innerHTML = `
+    <div class="card">
+      <div class="badge">${meta.chapter}</div>
+      <h1>${meta.title}</h1>
+      <p>🔒 이 관문은 아직 열리지 않았습니다. 선생님이 진도에 맞춰 열어주실 때까지 기다려 주세요.</p>
+      <a class="btn btn-secondary" href="hub.html">허브로 돌아가기</a>
+    </div>
+  `;
 }
 
 function renderStage(stage, meta) {
@@ -158,11 +188,19 @@ function checkAllCorrectAndShowNext() {
     const next = STAGE_LIST[idx + 1];
     const nextCard = document.getElementById("next-stage-card");
     if (next) {
-      nextCard.innerHTML = `
-        <h2>관문 통과! 🚪</h2>
-        <p>다음 관문으로 이동하세요.</p>
-        <a class="btn btn-primary" href="stage.html?id=${next.id}">${next.title} 로 이동 →</a>
-      `;
+      const isNextOpen = currentStageOpenMap && currentStageOpenMap[next.id];
+      if (isNextOpen) {
+        nextCard.innerHTML = `
+          <h2>관문 통과! 🚪</h2>
+          <p>다음 관문으로 이동하세요.</p>
+          <a class="btn btn-primary" href="stage.html?id=${next.id}">${next.title} 로 이동 →</a>
+        `;
+      } else {
+        nextCard.innerHTML = `
+          <h2>관문 통과! 🚪</h2>
+          <p>🔒 다음 관문(${next.title})은 아직 열리지 않았습니다. 선생님이 열어주실 때까지 기다려 주세요.</p>
+        `;
+      }
     } else {
       nextCard.innerHTML = `<h2>모든 스테이지를 완료했습니다! 축하합니다 🎉</h2>`;
     }

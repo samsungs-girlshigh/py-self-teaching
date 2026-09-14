@@ -34,6 +34,11 @@ function setHubPublic(pin, isPublic) {
   return callApi("setHubPublic", { pin, isPublic });
 }
 
+// 특정 스테이지의 공개(잠금 해제) 여부 토글 (PIN 필요)
+function setStageOpen(pin, stageId, isOpen) {
+  return callApi("setStageOpen", { pin, stageId, isOpen });
+}
+
 // 교사 대시보드 데이터 조회 (PIN 필요)
 function getDashboardData(pin) {
   return callApi("getDashboard", { pin });
