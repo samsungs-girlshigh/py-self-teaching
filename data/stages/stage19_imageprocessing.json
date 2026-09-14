@@ -1,0 +1,20 @@
+{
+  "id": "stage19_imageprocessing",
+  "title": "최종 보스 – 봉인 마법진 해제",
+  "intro": [
+    "최종 보스: \"이 마법진을 풀려면 그림 자체를 다룰 줄 알아야 한다!\"",
+    "\"PIL(Pillow)이라는 마법서로 이미지를 회전시키고, 뒤집고, 필터를 씌워 봉인을 해제해라.\"",
+    "(이번 관문도 문제를 푸는 대신, 이미지 처리의 핵심 개념과 예시 코드를 살펴보며 마무리합니다. 지금까지 배운 변수, 함수, 클래스가 실전에서 어떻게 함께 쓰이는지 확인해 보세요.)"
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "Pillow (PIL)", "desc": "파이썬에서 이미지를 열고, 만들고, 편집할 수 있게 해주는 대표적인 모듈 (from PIL import Image로 사용)" },
+      { "term": "rotate(각도)", "desc": "이미지를 지정한 각도만큼 시계 반대 방향으로 회전" },
+      { "term": "transpose(FLIP_LEFT_RIGHT)", "desc": "이미지를 좌우로 뒤집음. FLIP_TOP_BOTTOM은 상하로 뒤집음" },
+      { "term": "convert('L')", "desc": "이미지를 흑백(그레이스케일)으로 변환" },
+      { "term": "filter(...)", "desc": "흐림, 윤곽선 강조 등 다양한 이미지 필터를 적용" }
+    ],
+    "exampleCode": "from PIL import Image, ImageDraw, ImageFilter\n\n# 원형 봉인 마법진 그리기 (실제 파일 없이 코드로 새 이미지 생성)\nseal = Image.new(\"RGB\", (120, 120), color=\"black\")\ndraw = ImageDraw.Draw(seal)\ndraw.ellipse([10, 10, 110, 110], outline=\"gold\", width=4)\n\n# 1. 회전시켜 봉인의 첫 번째 자물쇠 해제\nrotated = seal.rotate(90)\n\n# 2. 좌우로 뒤집어 두 번째 자물쇠 해제\nflipped = seal.transpose(Image.FLIP_LEFT_RIGHT)\n\n# 3. 흑백으로 바꿔 세 번째 자물쇠 해제\ngray = seal.convert(\"L\")\n\n# 4. 흐림 필터로 마지막 봉인 해제\nblurred = seal.filter(ImageFilter.GaussianBlur(radius=3))\n\nprint(\"봉인 마법진 해제 완료! 크기:\", seal.size, \"모드:\", gray.mode)\n# 봉인 마법진 해제 완료! 크기: (120, 120) 모드: L\n\n# 지금까지 배운 class를 이렇게 함께 쓸 수도 있습니다\nclass SealedGate:\n    def __init__(self, image):\n        self.image = image\n        self.unlocked_steps = 0\n\n    def unlock(self):\n        self.unlocked_steps += 1\n\ngate = SealedGate(seal)\nfor step in [rotated, flipped, gray, blurred]:\n    gate.unlock()\nprint(gate.unlocked_steps, \"단계 봉인 해제!\")\n# 4 단계 봉인 해제!"
+  },
+  "questions": []
+}

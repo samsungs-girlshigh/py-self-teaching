@@ -21,7 +21,9 @@ const STAGE_LIST = [
   { id: "stage14_scope",     order: 14, chapter: "5단원 · 지역/전역 변수", title: "결계의 방",                  file: "data/stages/stage14_scope.json" },
   { id: "stage15_search",    order: 15, chapter: "5단원 · 순차/이진 탐색", title: "탐색자의 미로",              file: "data/stages/stage15_search.json" },
   { id: "stage16_modules",   order: 16, chapter: "5단원 · 모듈/라이브러리", title: "마법서 도서관",              file: "data/stages/stage16_modules.json" },
-  { id: "stage17_dataanalysis", order: 17, chapter: "5단원 · 데이터 분석", title: "예언자의 탑",                file: "data/stages/stage17_dataanalysis.json" }
+  { id: "stage17_dataanalysis", order: 17, chapter: "5단원 · 데이터 분석", title: "예언자의 탑",                file: "data/stages/stage17_dataanalysis.json" },
+  { id: "stage18_oop",       order: 18, chapter: "6단원 · 객체지향",     title: "대장간 – 나만의 캐릭터",      file: "data/stages/stage18_oop.json" },
+  { id: "stage19_imageprocessing", order: 19, chapter: "6단원 · 이미지 처리", title: "최종 보스 – 봉인 마법진 해제", file: "data/stages/stage19_imageprocessing.json" }
 ];
 
 function getStageMeta(stageId) {

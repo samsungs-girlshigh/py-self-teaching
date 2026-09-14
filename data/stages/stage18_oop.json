@@ -1,0 +1,42 @@
+{
+  "id": "stage18_oop",
+  "title": "대장간 – 나만의 캐릭터",
+  "intro": [
+    "대장장이: \"지금까지 배운 변수, 함수를 한데 묶어 진짜 '캐릭터'를 만들어보자.\"",
+    "\"class는 캐릭터의 설계도이고, 그 설계도로 실제로 찍어낸 것이 인스턴스(instance)다.\""
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "class", "desc": "객체(캐릭터, 몬스터 등)를 만들기 위한 설계도. 속성과 동작(메서드)을 함께 정의" },
+      { "term": "__init__", "desc": "클래스로 새 인스턴스를 만들 때 자동으로 실행되는 초기화 메서드" },
+      { "term": "self", "desc": "메서드 안에서 '이 인스턴스 자기 자신'을 가리키는 이름. 항상 첫 번째 매개변수로 씀" },
+      { "term": "인스턴스", "desc": "class로 실제로 만들어낸 개별 객체. 같은 클래스로 여러 개를 만들어도 서로 독립적" }
+    ],
+    "exampleCode": "class Character:\n    def __init__(self, name, hp):\n        self.name = name\n        self.hp = hp\n\n    def take_damage(self, amount):\n        self.hp -= amount\n\nhero = Character(\"용사\", 100)\nmonster = Character(\"고블린\", 50)\n\nhero.take_damage(30)\nprint(hero.hp, monster.hp)   # 70 50 (서로 영향 없음)"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "이름(name)과 체력(hp)을 받아 속성으로 저장하는 Character 클래스를 정의하고, Character(\"용사\", 100)으로 만든 인스턴스의 name과 hp를 출력하는 코드를 완성하세요. (결과는 '용사 100' 이어야 합니다.)",
+      "codeTemplate": "{{blank}}\n\nhero = Character(\"용사\", 100)\nprint(hero.name, hero.hp)",
+      "correctFeedback": "설계도(class)로 캐릭터를 정확히 찍어냈습니다!",
+      "options": [
+        { "id": "opt_typo_init", "code": "class Character:\n    def __int__(self, name, hp):\n        self.name = name\n        self.hp = hp" },
+        { "id": "opt_no_self_attr", "code": "class Character:\n    def __init__(self, name, hp):\n        name = name\n        hp = hp" },
+        { "id": "opt_correct", "code": "class Character:\n    def __init__(self, name, hp):\n        self.name = name\n        self.hp = hp" },
+        { "id": "opt_no_self", "code": "class Character:\n    def __init__(name, hp):\n        self.name = name\n        self.hp = hp" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "Character 클래스에 데미지를 입히는 take_damage(amount) 메서드를 추가하고, hero(체력100)에게만 30의 데미지를 입혀서 다른 인스턴스(monster, 체력50)는 영향받지 않는지 확인하는 코드를 완성하세요. (결과는 '70 50' 이어야 합니다.)",
+      "codeTemplate": "{{blank}}\nprint(hero.hp, monster.hp)",
+      "options": [
+        { "id": "opt_extra_self", "code": "class Character:\n    def __init__(self, name, hp):\n        self.name = name\n        self.hp = hp\n    def take_damage(self, amount):\n        self.hp -= amount\n\nhero = Character(\"용사\", 100)\nmonster = Character(\"고블린\", 50)\nhero.take_damage(hero, 30)" },
+        { "id": "opt_correct", "code": "class Character:\n    def __init__(self, name, hp):\n        self.name = name\n        self.hp = hp\n    def take_damage(self, amount):\n        self.hp -= amount\n\nhero = Character(\"용사\", 100)\nmonster = Character(\"고블린\", 50)\nhero.take_damage(30)" },
+        { "id": "opt_class_level", "code": "class Character:\n    def __init__(self, name, hp):\n        self.name = name\n        self.hp = hp\n    def take_damage(self, amount):\n        Character.hp -= amount\n\nhero = Character(\"용사\", 100)\nmonster = Character(\"고블린\", 50)\nhero.take_damage(30)" },
+        { "id": "opt_no_self_in_method", "code": "class Character:\n    def __init__(self, name, hp):\n        self.name = name\n        self.hp = hp\n    def take_damage(self, amount):\n        hp -= amount\n\nhero = Character(\"용사\", 100)\nmonster = Character(\"고블린\", 50)\nhero.take_damage(30)" }
+      ]
+    }
+  ]
+}

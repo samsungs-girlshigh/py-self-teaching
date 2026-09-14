@@ -80,6 +80,10 @@ const ANSWER_KEY = {
   stage16_modules: {
     q1: ["opt_correct"],
     q2: ["opt_correct"]
+  },
+  stage18_oop: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 
