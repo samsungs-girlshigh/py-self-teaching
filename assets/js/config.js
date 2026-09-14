@@ -17,7 +17,8 @@ const STAGE_LIST = [
   { id: "stage10_loops",     order: 10, chapter: "4단원 · 반복문",       title: "무한 회랑",                   file: "data/stages/stage10_loops.json" },
   { id: "stage11_breakcontinue", order: 11, chapter: "4단원 · break/continue", title: "무한 회랑 – 탈출구",     file: "data/stages/stage11_breakcontinue.json" },
   { id: "stage12_sorting",   order: 12, chapter: "4단원 · 정렬 알고리즘", title: "정렬의 방",                  file: "data/stages/stage12_sorting.json" },
-  { id: "stage13_functions", order: 13, chapter: "5단원 · 함수",         title: "주문서 서재",                 file: "data/stages/stage13_functions.json" }
+  { id: "stage13_functions", order: 13, chapter: "5단원 · 함수",         title: "주문서 서재",                 file: "data/stages/stage13_functions.json" },
+  { id: "stage14_scope",     order: 14, chapter: "5단원 · 지역/전역 변수", title: "결계의 방",                  file: "data/stages/stage14_scope.json" }
 ];
 
 function getStageMeta(stageId) {

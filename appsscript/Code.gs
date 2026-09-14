@@ -68,6 +68,10 @@ const ANSWER_KEY = {
   stage13_functions: {
     q1: ["opt_correct"],
     q2: ["opt_correct"]
+  },
+  stage14_scope: {
+    q1: ["opt_correct"],
+    q2: ["opt_correct"]
   }
 };
 

@@ -1,0 +1,42 @@
+{
+  "id": "stage14_scope",
+  "title": "결계의 방",
+  "intro": [
+    "결계의 수호자: \"이 방 안(함수)과 밖(전역)은 서로 다른 세계다.\"",
+    "\"밖에 있는 값을 안에서 함부로 바꾸려 하면 결계가 막아선다. 제대로 된 절차를 거쳐야 하지.\""
+  ],
+  "conceptCard": {
+    "terms": [
+      { "term": "전역 변수", "desc": "함수 밖에서 만든 변수. 프로그램 어디서든 '읽기'는 가능" },
+      { "term": "지역 변수", "desc": "함수 안에서 만든 변수(매개변수 포함). 그 함수 안에서만 존재하고, 함수가 끝나면 사라짐" },
+      { "term": "global 키워드", "desc": "함수 안에서 전역 변수를 진짜로 '수정'하고 싶을 때, 대입하기 전에 반드시 선언해야 함" },
+      { "term": "흔한 함정", "desc": "global 선언 없이 함수 안에서 전역 변수와 같은 이름에 값을 대입하려 하면, 파이썬은 그 이름을 새 지역 변수로 착각해 오류를 낸다" }
+    ],
+    "exampleCode": "mana = 100\n\ndef use_mana(cost):\n    global mana        # 전역 mana를 수정하겠다고 선언\n    mana -= cost\n\nuse_mana(30)\nprint(mana)   # 70\n\n# 더 안전한 방법: 매개변수로 받아서 계산하고 return으로 돌려주기\nlevel = 5\ndef level_up(current_level):\n    current_level = current_level + 1   # 이건 지역 변수라 안전\n    return current_level\nlevel = level_up(level)\nprint(level)  # 6"
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "전역 변수 mana(=100)를 함수 use_mana(cost) 안에서 실제로 30만큼 줄이는 코드를 완성하세요. (결과는 70이어야 합니다.)",
+      "codeTemplate": "mana = 100\n{{blank}}\nuse_mana(30)\nprint(mana)",
+      "correctFeedback": "global 선언으로 결계 밖 마나를 정확히 줄였습니다!",
+      "options": [
+        { "id": "opt_no_global", "code": "def use_mana(cost):\n    mana -= cost" },
+        { "id": "opt_correct", "code": "def use_mana(cost):\n    global mana\n    mana -= cost" },
+        { "id": "opt_late_global", "code": "def use_mana(cost):\n    mana -= cost\n    global mana" },
+        { "id": "opt_local_only", "code": "def use_mana(cost):\n    mana = mana - cost" }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "레벨(level=5)을 매개변수로 받아 1 올린 뒤 반환하는 함수 level_up을 만들고, 그 결과를 level에 다시 반영하는 코드를 완성하세요. (결과는 6이어야 합니다.)",
+      "codeTemplate": "level = 5\n{{blank}}\nprint(level)",
+      "options": [
+        { "id": "opt_missing_arg", "code": "def level_up(current_level):\n    current_level = current_level + 1\n    return current_level\nlevel = level_up()" },
+        { "id": "opt_global_missing", "code": "def level_up():\n    level = level + 1\n    return level\nlevel = level_up()" },
+        { "id": "opt_no_assign", "code": "def level_up(current_level):\n    current_level = current_level + 1\n    return current_level\nlevel_up(level)" },
+        { "id": "opt_correct", "code": "def level_up(current_level):\n    current_level = current_level + 1\n    return current_level\nlevel = level_up(level)" }
+      ]
+    }
+  ]
+}
